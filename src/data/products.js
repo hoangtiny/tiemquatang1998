@@ -31,15 +31,13 @@ export const rawProducts = [
         name: 'Màu sắc',
         values: [
           { name: 'Hồng' },
-          { name: 'Nam' },
-          { name: 'Hoa tulip' },
-          { name: 'Note màu' }
+          { name: 'Nam' }
         ]
       },
       {
         name: 'Thiệp',
         values: [
-          { name: 'Thiệp Love You So Much 1' }
+          { name: 'Thiệp Love You So Much. 1' }
         ]
       }
     ],
@@ -83,9 +81,10 @@ Dành tặng cho nửa kia, bạn bè thân thiết, hoặc tự thưởng cho c
     ],
     options: [
       {
-        name: 'Mẫu',
+        name: 'Màu sắc',
         values: [
-          { name: 'Box Tháng Ba' }
+          { name: 'Hoa tulip' },
+          { name: 'Note màu' }
         ]
       },
       {
@@ -141,6 +140,7 @@ Dành tặng cho những người bạn thân, người thương yêu trong ngà
       {
         name: 'Màu sắc',
         values: [
+          { name: 'Box Tháng Ba' },
           { name: 'Đen' }
         ]
       }
@@ -170,11 +170,12 @@ Set quà ghi điểm bởi sự hữu dụng vượt trội với bộ sậu ho�
   },
   {
     id: 4,
-    name: 'MÓC KHÓA IN THEO YÊU CẦU / MÓC KHÓA IN VÂN TAY (1 SET 02 MÓC)',
+    name: 'MÓC KHÓA IN THEO YÊU CẦU',
     price: '20.000đ',
+    originalPrice: '22.000đ',
     badge: 'Mới',
     image: 'https://images.unsplash.com/photo-1619134778706-7015533a6150?q=80&w=800&auto=format&fit=crop',
-    description: 'Móc khóa in Theo Yêu Cầu - Dấu Ấn Cá Nhân Trọn Vẹn.\nDù mang thiết kế nhỏ gọn nhưng móc khóa in theo yêu cầu lại là nơi lưu giữ trọn vẹn những kỷ niệm vô giá. Bạn có thể thỏa sức sáng tạo, in hình ảnh, lời chúc hoặc tọa độ đặc biệt mang câu chuyện của riêng mình.\n\nMóc Khóa In Vân Tay - Dấu Ấn Độc Bản, Gắn Kết Yêu Thương.\nMang thiết kế nhỏ gọn nhưng đong đầy ý nghĩa, móc khóa in vân tay theo yêu cầu là món quà tặng hoàn hảo giúp gắn kết tình cảm. Mỗi sản phẩm được Tiệm trao đi là một set quà vô cùng tinh tế...',
+    description: 'Móc khóa in Theo Yêu Cầu - Dấu Ấn Cá Nhân Trọn Vẹn.\nDù mang thiết kế nhỏ gọn nhưng móc khóa in theo yêu cầu lại là nơi lưu giữ trọn vẹn những kỷ niệm vô giá. Bạn có thể thỏa sức sáng tạo, in hình ảnh, lời chúc hoặc tọa độ đặc biệt mang câu chuyện của riêng mình.',
     category: 'Sản phẩm lẻ',
     freePhoto: true,
     capacity: 200,
@@ -186,10 +187,38 @@ Set quà ghi điểm bởi sự hữu dụng vượt trội với bộ sậu ho�
       {
         name: 'Phân loại',
         values: [
-          { name: 'in hình', price: '20.000đ' },
-          { name: 'Spotify', price: '22.000đ' },
-          { name: 'Kỷ thêm', price: '22.000đ' },
-          { name: '2 mặt khác nhau', price: '27.000đ' },
+          { name: 'in hình', price: '20.000đ' }
+        ]
+      }
+    ],
+    tabs: {
+      description: `Móc khóa in Theo Yêu Cầu - Dấu Ấn Cá Nhân Trọn Vẹn.
+Dù mang thiết kế nhỏ gọn nhưng móc khóa in theo yêu cầu lại là nơi lưu giữ trọn vẹn những kỷ niệm vô giá. Bạn có thể thỏa sức sáng tạo, in hình ảnh, lời chúc hoặc tọa độ đặc biệt mang câu chuyện của riêng mình.`,
+      video: '',
+      includes: []
+    }
+  },
+  {
+    id: 5,
+    name: 'MÓC KHÓA IN VÂN TAY (1 SET 02 MÓC)',
+    price: '22.000đ',
+    badge: 'Mới',
+    image: '/anhdep/mini-box-2.webp',
+    description: 'Móc Khóa In Vân Tay - Dấu Ấn Độc Bản, Gắn Kết Yêu Thương.\nMang thiết kế nhỏ gọn nhưng đong đầy ý nghĩa, móc khóa in vân tay theo yêu cầu là món quà tặng hoàn hảo giúp gắn kết tình cảm. Mỗi sản phẩm được Tiệm trao đi là một set quà vô cùng tinh tế...',
+    category: 'Sản phẩm lẻ',
+    freePhoto: true,
+    capacity: 200,
+    tags: ['Kỷ niệm', 'Sinh nhật', 'Đám cưới', 'Valentine'],
+    additionalImages: [
+      '/anhdep/mini-box-3.webp'
+    ],
+    options: [
+      {
+        name: 'Phân loại',
+        values: [
+          { name: 'Spotify', price: '22.000đ', originalPrice: '27.000đ' },
+          { name: 'Kỷ thêm', price: '22.000đ', originalPrice: '50.000đ' },
+          { name: '2 mặt khác nhau', price: '27.000đ', originalPrice: '50.000đ' },
           { name: 'Tình yêu', price: '50.000đ' },
           { name: 'Kỷ niệm', price: '50.000đ' },
           { name: 'Tình bạn', price: '50.000đ' },
@@ -198,17 +227,14 @@ Set quà ghi điểm bởi sự hữu dụng vượt trội với bộ sậu ho�
       }
     ],
     tabs: {
-      description: `Móc khóa in Theo Yêu Cầu - Dấu Ấn Cá Nhân Trọn Vẹn.
-Dù mang thiết kế nhỏ gọn nhưng móc khóa in theo yêu cầu lại là nơi lưu giữ trọn vẹn những kỷ niệm vô giá. Bạn có thể thỏa sức sáng tạo, in hình ảnh, lời chúc hoặc tọa độ đặc biệt mang câu chuyện của riêng mình.
-
-Móc Khóa In Vân Tay - Dấu Ấn Độc Bản, Gắn Kết Yêu Thương.
+      description: `Móc Khóa In Vân Tay - Dấu Ấn Độc Bản, Gắn Kết Yêu Thương.
 Mang thiết kế nhỏ gọn nhưng đong đầy ý nghĩa, móc khóa in vân tay theo yêu cầu là món quà tặng hoàn hảo giúp gắn kết tình cảm. Mỗi sản phẩm được Tiệm trao đi là một set quà vô cùng tinh tế, bao gồm đầy đủ đồ để in vân tay chuyên dụng. Chỉ với vài bước đơn giản, bạn đã có thể lưu giữ dấu vân tay của mình và người thương yêu trên chiếc móc khóa độc bản.`,
-      video: '',
+      video: 'google.com/co',
       includes: []
     }
   },
   {
-    id: 5,
+    id: 6,
     name: 'HUY CHƯƠNG IN THEO YÊU CẦU',
     price: '50.000đ',
     badge: 'Bán chạy',
@@ -227,9 +253,9 @@ Mang thiết kế nhỏ gọn nhưng đong đầy ý nghĩa, móc khóa in vân 
       {
         name: 'Phân loại',
         values: [
-          { name: 'Tặng bạn nữ', price: '50.000đ' },
+          { name: 'Tặng bạn nữ', price: '50.000đ', originalPrice: '50.000đ' },
           { name: 'Tặng tốt nghiệp', price: '50.000đ' },
-          { name: 'Dịp khác', price: '50.000đ' }
+          { name: 'Dịp khác', price: '50.000đ', originalPrice: '50.000đ' }
         ]
       }
     ],
@@ -241,7 +267,7 @@ Nếu bạn đang tìm kiếm một món quà tặng độc đáo để tạo s�
     }
   },
   {
-    id: 6,
+    id: 7,
     name: 'CARD SPOTIFY IN THEO YÊU CẦU (1 SET 08 CARDS)',
     price: '50.000đ',
     badge: '',
@@ -258,23 +284,23 @@ Nếu bạn đang tìm kiếm một món quà tặng độc đáo để tạo s�
       {
         name: 'Phân loại',
         values: [
-          { name: 'Mẫu 1 - Trắng', price: '50.000đ' },
-          { name: 'Mẫu 1 - Đen', price: '50.000đ' },
+          { name: 'Mẫu 1 - Trắng', price: '50.000đ', originalPrice: '50.000đ' },
+          { name: 'Mẫu 1 - Đen', price: '50.000đ', originalPrice: '50.000đ' },
           { name: 'Mẫu 2 - Trắng', price: '50.000đ' },
           { name: 'Mẫu 2 - Đen', price: '50.000đ' },
-          { name: 'Mẫu 3', price: '50.000đ' }
+          { name: 'Mẫu...', price: '50.000đ' }
         ]
       }
     ],
     tabs: {
       description: `Card Spotify in Theo Yêu Cầu - Giai Điệu Lưu Giữ Yêu Thương.
 Card Spotify in theo yêu cầu là món quà tặng độc đáo giúp bạn thay lời muốn nói qua những giai điệu. Đây là cách tinh tế nhất để bạn lưu giữ bài hát yêu thích làm kỷ niệm hoặc khéo léo gửi gắm yêu thương chân thành đến người thương. 1 set bao gồm 8 card có thể in giống nhau hoặc khác nhau.`,
-      video: '',
+      video: 'nos drive.google.com/file',
       includes: []
     }
   },
   {
-    id: 7,
+    id: 8,
     name: 'ẢNH PHOTOBOOTH / PHOTOSTRIP IN THEO YÊU CẦU',
     price: '40.000đ',
     badge: '',
@@ -313,7 +339,7 @@ Những dải ảnh Photostrip hay Photobooth in theo yêu cầu không chỉ l�
     }
   },
   {
-    id: 8,
+    id: 9,
     name: 'ẢNH 6X9CM IN THEO YÊU CẦU (1 SET 10 ẢNH)',
     price: '40.000đ',
     badge: '',
@@ -330,8 +356,8 @@ Những dải ảnh Photostrip hay Photobooth in theo yêu cầu không chỉ l�
       {
         name: 'Phân loại',
         values: [
-          { name: 'Viền nhỏ', price: '40.000đ' },
-          { name: 'Viền trắng', price: '40.000đ' },
+          { name: 'Viền nhỏ', price: '40.000đ', originalPrice: '40.000đ' },
+          { name: 'Viền trắng', price: '40.000đ', originalPrice: '40.000đ' },
           { name: 'Viền màu', price: '40.000đ' },
           { name: 'Chèn chữ', price: '50.000đ' }
         ]
@@ -340,12 +366,12 @@ Những dải ảnh Photostrip hay Photobooth in theo yêu cầu không chỉ l�
     tabs: {
       description: `Ảnh 6x9cm in Theo Yêu Cầu - Lưu Giữ Trọn Vẹn Ký Ức.
 Ảnh 6x9cm in theo yêu cầu là lựa chọn hoàn hảo để bạn hiện thực hóa và lưu giữ trọn vẹn những kỷ niệm quý giá. Với kích thước 6x9cm nhỏ gọn, tinh tế rất lý tưởng để bạn thỏa sức sáng tạo: trang trí không gian sống, góc bàn làm việc, làm bookmark... 1 set bao gồm 10 ảnh có thể in giống nhau hoặc khác nhau.`,
-      video: '',
+      video: 'drvw.google.com/stati',
       includes: []
     }
   },
   {
-    id: 9,
+    id: 10,
     name: 'CHỨNG NHẬN IN THEO YÊU CẦU',
     price: '20.000đ',
     badge: '',
@@ -407,7 +433,7 @@ export const categories = [
   {
     id: 'san-pham-le',
     title: 'Sản phẩm lẻ',
-    count: '6',
+    count: '7',
     image: 'https://images.unsplash.com/photo-1619134778706-7015533a6150?q=80&w=400&auto=format&fit=crop',
     color: 'bg-blue-100',
   }
