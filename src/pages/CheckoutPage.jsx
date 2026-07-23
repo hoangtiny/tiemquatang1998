@@ -93,9 +93,9 @@ const CheckoutPage = () => {
   };
 
   const subtotal = checkoutItems.reduce((total, item) => total + (parsePrice(item.price) * item.quantity), 0);
-  const shippingFee = (deliveryMethod === 'delivery') ? (subtotal < 399000 ? (isExpress ? 35000 : 15000) : (isExpress ? 20000 : 0)) : 0;
+  const shippingFee = 0;
   const discountAmount = 0; // Mock discount logic can be added later
-  const finalTotal = subtotal + shippingFee - discountAmount;
+  const finalTotal = subtotal - discountAmount;
 
   // Validate info
   const isDeliveryInfoValid = deliveryMethod === 'pickup' 
@@ -108,7 +108,7 @@ const CheckoutPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!paymentMethod || !hasConfirmedTransfer || !isDeliveryInfoValid) return;
+    if (!isDeliveryInfoValid) return;
 
     setIsSending(true);
     
@@ -144,19 +144,19 @@ const CheckoutPage = () => {
         email: email,
         address: fullAddress,
         note: note,
-        expectedDate,
-        isExpress
+        expectedDate: '',
+        isExpress: false
       },
       items: checkoutItems,
       detailed_items: detailed_items, // Send detailed string for Sheets
       subtotal: subtotal,
-      shipping_fee: shippingFee,
+      shipping_fee: 0,
       discount: discountAmount,
       total: finalTotal,
       total_formatted: formatPrice(finalTotal),
-      deposit: paymentMethod === 'cod' ? depositAmount : (paymentMethod === 'transfer' ? finalTotal : 0),
-      remaining: paymentMethod === 'cod' ? remainingAmount : 0,
-      payment_method: paymentMethod,
+      deposit: 0,
+      remaining: finalTotal,
+      payment_method: 'Zalo',
       delivery_method: deliveryMethod,
       status: 'pending' 
     };
@@ -243,9 +243,14 @@ const CheckoutPage = () => {
         <p className="text-[#475569] mb-8 max-w-md text-center">
           Cảm ơn bạn đã tin tưởng Tiệm quà tặng 1998. Đơn hàng của bạn đang được xử lý và sẽ sớm được giao.
         </p>
-        <button onClick={() => window.location.href = '/'} className="bg-[#8b1a1a] text-white px-8 py-3 rounded-full font-bold outline-none hover:bg-[#701414] transition-colors shadow-lg shadow-[#8b1a1a]/20">
-          Trở về Trang Chủ
-        </button>
+        <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
+          <a href="https://zalo.me/0339267766" target="_blank" rel="noopener noreferrer" className="bg-[#0068ff] text-white px-8 py-3 rounded-full font-bold outline-none hover:bg-[#0052cc] transition-colors shadow-lg shadow-blue-500/20 text-center flex items-center justify-center">
+            Xác nhận đơn hàng qua Zalo
+          </a>
+          <button onClick={() => window.location.href = '/'} className="bg-gray-200 text-gray-700 px-8 py-3 rounded-full font-bold outline-none hover:bg-gray-300 transition-colors shadow-lg">
+            Trở về Trang Chủ
+          </button>
+        </div>
       </div>
     );
   }
@@ -305,34 +310,7 @@ const CheckoutPage = () => {
                         <input type="email" value={email} onChange={(e)=>setEmail(e.target.value)} required placeholder="Email..." className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-[#8b1a1a]/20 focus:border-[#8b1a1a] outline-none transition-all placeholder:text-gray-400" />
                       </div>
 
-                      <div className="pt-2">
-                        <label className="flex items-center gap-3 cursor-pointer">
-                          <input type="radio" value="date" checked={!isExpress} onChange={() => setIsExpress(false)} className="w-5 h-5 accent-[#8b1a1a]" />
-                          <span className="text-[14px] text-[#1e3a5f] font-medium">Chọn ngày nhận hàng mong muốn</span>
-                        </label>
-                        {!isExpress && (
-                           <div className="ml-8 mt-3 max-w-[250px]">
-                              <input type="date" value={expectedDate} onChange={(e)=>setExpectedDate(e.target.value)} className="w-full px-4 py-2 rounded-lg border border-gray-200 text-sm focus:border-[#8b1a1a] outline-none text-gray-600" />
-                           </div>
-                        )}
-                      </div>
-
-                      <div className="pt-1">
-                        <label className={`flex items-center gap-3 ${isCentralHanoi ? 'cursor-pointer' : 'cursor-not-allowed opacity-60'}`}>
-                          <input type="radio" value="express" checked={isExpress} onChange={() => setIsExpress(true)} disabled={!isCentralHanoi} className="w-5 h-5 accent-[#8b1a1a]" />
-                          <span className="text-[14px] text-[#1e3a5f] font-medium">Ship hoả tốc</span>
-                        </label>
-                        {!isCentralHanoi ? (
-                          <div className="ml-8 mt-1 space-y-1">
-                            <p className="text-xs text-red-500 italic">* Hiện tại chỉ áp dụng cho các quận trung tâm Hà Nội</p>
-                          </div>
-                        ) : isExpress && (
-                          <div className="ml-8 mt-2 space-y-1">
-                            <p className="text-xs text-gray-500 italic">- Đang áp dụng cho địa chỉ của bạn tại Hà Nội</p>
-                            <p className="text-xs text-gray-500 italic">- Giao và nhận trong vòng 2-4 giờ kể từ khi đơn hàng được xác nhận</p>
-                          </div>
-                        )}
-                      </div>
+                      {/* Expected Date & Express Shipping Removed */}
 
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 pt-4">
                         <div className="space-y-1">
@@ -371,10 +349,7 @@ const CheckoutPage = () => {
                         </div>
                       </div>
                       
-                      <div className="flex items-center gap-3 pt-2">
-                         <div className="bg-[#8b1a1a] text-white text-[11px] font-bold px-4 py-2 rounded-full">Tính phí ship</div>
-                         <span className="text-sm font-medium text-gray-600">~ {formatPrice(shippingFee)}</span>
-                      </div>
+                      {/* Shipping fee display removed */}
 
                       <div className="space-y-1 pt-2">
                         <label className="text-xs font-bold text-[#2c3e50] ml-1">Ghi chú:</label>
@@ -428,122 +403,7 @@ const CheckoutPage = () => {
               </div>
             </div>
 
-            {/* Payment Method */}
-            <div className={`space-y-6 pt-6 border-t border-gray-200 ${!isDeliveryInfoValid ? 'opacity-50 pointer-events-none' : ''}`}>
-              <div className="flex items-center justify-between">
-                 <h2 className="text-[20px] font-bold text-[#1e3a5f]">Phương thức thanh toán</h2>
-                 {!isDeliveryInfoValid && (
-                    <span className="text-[11px] text-red-500 font-medium bg-red-50 px-3 py-1.5 rounded-full">
-                      Vui lòng nhập đầy đủ thông tin giao hàng
-                    </span>
-                 )}
-              </div>
-
-              <div className="space-y-4">
-                  <div className={`border rounded-xl transition-colors overflow-hidden ${paymentMethod === 'cod' ? 'bg-[#f8fafc] border-blue-200 shadow-sm' : 'bg-white border-gray-200'}`}>
-                    <label className="flex items-center gap-3 p-4 cursor-pointer hover:bg-gray-50">
-                      <input 
-                        type="radio" 
-                        name="payment" 
-                        value="cod"
-                        checked={paymentMethod === 'cod'}
-                        onChange={() => {
-                          setPaymentMethod('cod');
-                          setHasConfirmedTransfer(false);
-                        }}
-                        className="text-[#8b1a1a] focus:ring-[#8b1a1a] w-5 h-5 cursor-pointer accent-[#8b1a1a]" 
-                      />
-                      <span className="font-bold text-[15px] text-[#1e3a5f]">Cọc trước 50%</span>
-                    </label>
-                    
-                    {paymentMethod === 'cod' && (
-                      <div className="px-6 pb-6 border-t border-gray-100 pt-6 flex flex-col items-center text-center">
-                        <p className="text-sm text-[#475569] mb-4 font-medium">Quét mã cọc đơn hàng để Tiệm lên đơn</p>
-                        <p className="text-[15px] font-black text-[#1e3a5f] mb-1">TECHCOMBANK</p>
-                        <p className="font-bold text-[#475569] text-base uppercase">NGUYEN THI NGOC HAN</p>
-                        <p className="font-semibold text-gray-400 mb-6">9960 9719 98</p>
-                        <div className="bg-white p-3 rounded-2xl shadow-sm border border-gray-100 mb-6">
-                           {/* Add max-height and width to keep it consistent */}
-                          <img 
-                            src={`https://img.vietqr.io/image/techcombank-9960971998-compact2.png?amount=${depositAmount}&addInfo=${encodeURIComponent(`${customerName || 'Khach'} - ${phone || ''}- da coc ${depositAmount}`)}&accountName=NGUYEN THI NGOC HAN`} 
-                            alt="QR Code Cọc Đơn" 
-                            className="w-48 h-48 object-contain"
-                          />
-                        </div>
-                        <div className="text-[13px] text-[#475569] mt-2 w-full leading-relaxed bg-white p-4 rounded-xl border border-gray-100 mb-6 space-y-1 text-center shadow-sm">
-                          <p>Cọc trước <strong className="text-[#8b1a1a]">{formatPrice(depositAmount)}</strong> để tiệm lên đơn.</p>
-                          <p>Thanh toán còn lại <strong className="text-[#1e3a5f]">{formatPrice(remainingAmount)}</strong> khi nhận hàng.</p>
-                          <p className="text-[11px] font-bold text-gray-400 pt-3 mt-3 border-t border-gray-50">
-                            Nội dung: {customerName || 'Tên'} - {phone || 'SĐT'} - da coc {depositAmount}
-                          </p>
-                        </div>
-                        
-                        <label className="flex items-center gap-3 cursor-pointer bg-white p-4 rounded-xl border border-gray-200 shadow-sm w-full">
-                          <input 
-                            type="checkbox" 
-                            required
-                            checked={hasConfirmedTransfer}
-                            onChange={(e) => setHasConfirmedTransfer(e.target.checked)}
-                            className="w-5 h-5 text-[#8b1a1a] rounded focus:ring-[#8b1a1a]" 
-                          />
-                          <span className="text-[14px] font-bold text-[#1e3a5f]">Tôi xác nhận đã chuyển khoản cọc thành công</span>
-                        </label>
-                      </div>
-                    )}
-                  </div>
-
-                  <div className={`border rounded-xl transition-colors overflow-hidden ${paymentMethod === 'transfer' ? 'bg-[#f8fafc] border-blue-200 shadow-sm' : 'bg-white border-gray-200'}`}>
-                    <label className="flex items-center gap-3 p-4 cursor-pointer hover:bg-gray-50">
-                      <input 
-                        type="radio" 
-                        name="payment" 
-                        value="transfer"
-                        checked={paymentMethod === 'transfer'}
-                        onChange={() => {
-                          setPaymentMethod('transfer');
-                          setHasConfirmedTransfer(false);
-                        }}
-                        className="text-[#8b1a1a] focus:ring-[#8b1a1a] w-5 h-5 cursor-pointer accent-[#8b1a1a]" 
-                      />
-                      <span className="font-bold text-[15px] text-[#1e3a5f]">Thanh toán toàn bộ</span>
-                    </label>
-                    
-                    {paymentMethod === 'transfer' && (
-                      <div className="px-6 pb-6 border-t border-gray-100 pt-6 flex flex-col items-center text-center">
-                        <p className="text-sm text-[#475569] mb-4 font-medium">Quét mã chuyển tiền để Tiệm lên đơn</p>
-                        <p className="text-[15px] font-black text-[#1e3a5f] mb-1">TECHCOMBANK</p>
-                        <p className="font-bold text-[#475569] text-base uppercase">NGUYEN THI NGOC HAN</p>
-                        <p className="font-semibold text-gray-400 mb-6">9960 9719 98</p>
-                        <div className="bg-white p-3 rounded-2xl shadow-sm border border-gray-100 mb-6">
-                           <img 
-                            src={`https://img.vietqr.io/image/techcombank-9960971998-compact2.png?amount=${finalTotal}&addInfo=${encodeURIComponent(`${customerName || 'Khach'} - ${phone || ''}- da chuyen full`)}&accountName=NGUYEN THI NGOC HAN`} 
-                            alt="QR Code Chuyển Khoản" 
-                            className="w-48 h-48 object-contain"
-                          />
-                        </div>
-                        <div className="text-[13px] text-[#475569] mt-2 w-full leading-relaxed bg-white p-4 rounded-xl border border-gray-100 mb-6 space-y-1 text-center shadow-sm">
-                          <p>Thanh toán <strong className="text-[#8b1a1a]">{formatPrice(finalTotal)}</strong> để tiệm thực hiện đơn hàng.</p>
-                          <p>Đơn hàng được ưu tiên xử lý và giao nhanh nhất.</p>
-                          <p className="text-[11px] font-bold text-gray-400 pt-3 mt-3 border-t border-gray-50">
-                            Nội dung: {customerName || 'Tên'} - {phone || 'SĐT'} - da chuyen full
-                          </p>
-                        </div>
-                        
-                        <label className="flex items-center gap-3 cursor-pointer bg-white p-4 rounded-xl border border-gray-200 shadow-sm w-full">
-                          <input 
-                            type="checkbox" 
-                            required
-                            checked={hasConfirmedTransfer}
-                            onChange={(e) => setHasConfirmedTransfer(e.target.checked)}
-                            className="w-5 h-5 text-[#8b1a1a] rounded focus:ring-[#8b1a1a]" 
-                          />
-                          <span className="text-[14px] font-bold text-[#1e3a5f]">Tôi xác nhận đã chuyển khoản thành công</span>
-                        </label>
-                      </div>
-                    )}
-                  </div>
-              </div>
-            </div>
+            {/* Payment Method Section Removed */}
           </div>
 
           {/* Right Column - Order Summary */}
@@ -639,8 +499,8 @@ const CheckoutPage = () => {
                        <span className="font-medium text-[#1e3a5f]">{formatPrice(subtotal)}</span>
                     </div>
                     <div className="flex justify-between items-center text-[13px]">
-                       <span className="text-[#475569]">Phí giao hàng{isExpress ? ' (hoả tốc)' : ''}:</span>
-                       <span className="font-medium text-[#1e3a5f]">{shippingFee > 0 ? formatPrice(shippingFee) : '~ 0 đ'}</span>
+                       <span className="text-[#475569]">Phí giao hàng:</span>
+                       <span className="font-semibold text-green-600">Miễn phí</span>
                     </div>
                     <div className="flex justify-between items-center text-[13px]">
                        <span className="text-[#475569]">Giảm giá:</span>
@@ -655,10 +515,10 @@ const CheckoutPage = () => {
 
                  <button 
                   type="submit" 
-                  disabled={isSending || !paymentMethod || !hasConfirmedTransfer || !isDeliveryInfoValid}
-                  className={`w-full bg-[#8b1a1a] text-white font-bold text-[15px] py-4 rounded-[14px] shadow-lg shadow-[#8b1a1a]/25 transition-all outline-none ${(isSending || !paymentMethod || !hasConfirmedTransfer || !isDeliveryInfoValid) ? 'opacity-50 cursor-not-allowed' : 'hover:bg-[#701414] hover:-translate-y-0.5'}`}
+                  disabled={isSending || !isDeliveryInfoValid}
+                  className={`w-full bg-[#8b1a1a] text-white font-bold text-[15px] py-4 rounded-[14px] shadow-lg shadow-[#8b1a1a]/25 transition-all outline-none ${(isSending || !isDeliveryInfoValid) ? 'opacity-50 cursor-not-allowed' : 'hover:bg-[#701414] hover:-translate-y-0.5'}`}
                  >
-                    {isSending ? 'Đang phân tích...' : 'Hoàn thành đơn hàng'}
+                    {isSending ? 'Đang xử lý...' : 'Hoàn thành đơn hàng'}
                  </button>
              </div>
           </div>

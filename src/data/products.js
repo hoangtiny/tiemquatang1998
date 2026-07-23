@@ -11,71 +11,123 @@ export const rawProducts = [
   {
     id: 1,
     name: 'YÊU THƯƠNG MINI BOX',
-    price: '109.000đ',
-    originalPrice: '135.000đ',
+    price: '108.000đ',
     badge: '',
     image: '/anhdep/mini-box-1.webp',
-    description: 'Ngày kỷ niệm đặc biệt.',
+    description: 'Set Quà Yêu Thương Ghim Cảm Xúc Trao Gửi Chân thành.\n\nDành tặng cho nửa kia, bạn bè thân thiết, hoặc tự thưởng cho chính mình vào các dịp sinh nhật, kỷ niệm ngày cần được thắp lửa.\n\nĐiểm nhấn của sản phẩm nằm ở sự tinh tế, một set quà mini nhưng đầy đủ trọn vẹn và vô cùng ý nghĩa, giúp bạn gửi những thông điệp yêu thương một cách chân thành nhất.',
     category: 'Set quà',
     freePhoto: true,
     capacity: 120,
-    tags: ['Đám cưới', 'Kỷ niệm'],
+    tags: ['Kỷ niệm sinh nhật', 'Kỷ niệm'],
     additionalImages: [
       '/anhdep/mini-box-2.webp',
       '/anhdep/mini-box-3.webp',
       '/anhdep/mini-box-4.webp',
       '/anhdep/mini-box-5.webp',
-      '/anhdep/hop-qua.webp',
-      '/anhdep/lo-yeu-thuong.webp',
+      '/anhdep/lo-yeu-thuong.webp'
     ],
-    boxOptions: [
-      { id: 'box_wedding_1', name: 'Hộp Thường', image: '/anhdep/hop-qua.webp' },
-      { id: 'box_wedding_2', name: 'Hộp đặc biệt', image: '/anhdep/mini-box-1.webp' }
-    ],
-    cardOptions: [
-      { id: 'card_wedding_1', name: 'You Are The Best', icon: '🥂' },
-      { id: 'card_wedding_1', name: 'I Love You So Much', icon: '🥂' }
+    options: [
+      {
+        name: 'Màu sắc',
+        values: [
+          { name: 'Hồng' },
+          { name: 'Nam' },
+          { name: 'Hoa tulip' },
+          { name: 'Note màu' }
+        ]
+      },
+      {
+        name: 'Thiệp',
+        values: [
+          { name: 'Thiệp Love You So Much 1' }
+        ]
+      }
     ],
     tabs: {
-      description: `Set quà Tiệm 1998 YÊU THƯƠNG MINI BOX - Lọ Yêu Thương | Lọ Điều Ước | Kèm Hoa, Thiệp | Quà tặng cặp đôi, sinh nhật, ngày kỷ niệm đặc biệt
+      description: `Set Quà Yêu Thương Ghim Cảm Xúc Trao Gửi Chân thành.
+
+Dành tặng cho nửa kia, bạn bè thân thiết, hoặc tự thưởng cho chính mình vào các dịp sinh nhật, kỷ niệm ngày cần được thắp lửa.
+
+Điểm nhấn của sản phẩm nằm ở sự tinh tế, một set quà mini nhưng đầy đủ trọn vẹn và vô cùng ý nghĩa, giúp bạn gửi những thông điệp yêu thương một cách chân thành nhất.
 
 🎁 YÊU THƯƠNG MINI BOX bao gồm:
-
-+ Lọ Yêu Thương bao gồm 50 tờ note do chính bạn tự viết lời nhắn
++ 1 lọ đựng note ghim cảm xúc
 + Bút viết
 + Thiệp chúc mừng For The Record
-+ Hoa giấy mini hoặc hoa tulip
-+ Hộp & Túi đựng quà
-
-📌Tiệm 1998 cam kết:
-
-- Đổi trả miễn phí và hoàn tiền 100% sản phẩm lỗi
-- Sản phẩm phụ kiện đúng như ảnh
-- Hỗ trợ tư vấn 24/7, ship hỏa tốc 4h trong nội thành Hà Nội.
-
-#tiem1998 #tiemquatang #quatang #quasinhnhat #quatangbangai #quatangnguoiyeu #quatotnghiep #louoc #loyeuthuong #jaroflove #lovejar #healinglove`,
-      video: 'https://down-tx-sg.vod.susercontent.com/api/v4/11110105/mms/vn-11110105-6khw3-m8fnhgyi3s76de.16000081744339715.mp4',
++ Hoa giấy mini hoặc hoa sáp
++ Hộp đựng quà`,
+      video: '',
       includes: [
-        { name: 'Lọ Yêu Thương bao gồm 50 tờ note do chính bạn tự viết lời nhắn', image: '/anhdep/GRADUATE-BOX-2.webp', quantity: 1 },
-        { name: 'Bút viết', image: '/anhdep/GRADUATE-BOX-2.webp', quantity: 1 },
-        { name: 'Thiệp chúc mừng For The Record', image: '/anhdep/GRADUATE-BOX-2.webp', quantity: 1 },
-        { name: 'Hoa giấy mini hoặc hoa tulip', image: '/anhdep/GRADUATE-BOX-2.webp', quantity: 1 },
-        { name: ' Hộp & Túi đựng quà', image: '/anhdep/GRADUATE-BOX-2.webp', quantity: 1 }
+        { name: '1 lọ ghim cảm xúc', image: '/anhdep/lo-yeu-thuong.webp', quantity: 1 },
+        { name: 'Bút viết', image: '/anhdep/mini-box-2.webp', quantity: 1 },
+        { name: 'Thiệp chúc mừng For The Record', image: '/anhdep/mini-box-3.webp', quantity: 1 },
+        { name: 'Hoa giấy mini hoặc hoa sáp', image: '/anhdep/mini-box-4.webp', quantity: 1 },
+        { name: 'Hộp đựng quà', image: '/anhdep/hop-qua.webp', quantity: 1 }
       ]
     }
   },
   {
-    id: 5,
+    id: 2,
+    name: 'CỬ NHÂN MINI BOX',
+    price: '108.000đ',
+    badge: '',
+    image: '/anhdep/GRADUATE-BOX-2.webp',
+    description: 'Set Quà Cử Nhân Mini Hành Trang Nhỏ Ý Nghĩa.\n\nDành tặng cho những người bạn thân, người thương yêu trong ngày lễ tốt nghiệp rực rỡ. Set quà Cử nhân Mini là lời chúc mừng tươi tắn nhất gửi đến các tân cử nhân.\n\nĐiểm nhấn của sản phẩm nằm ở sự tinh tế, một set quà mini nhưng đầy đủ trọn vẹn và vô cùng ý nghĩa. Một món quà nhỏ nhắn nhưng gói trọn sự chân thành, động lực cho chặng đường rực rỡ phía trước.',
+    category: 'Set quà',
+    freePhoto: true,
+    capacity: 100,
+    tags: ['Kỷ niệm Tốt nghiệp', 'Kỷ niệm'],
+    additionalImages: [
+      '/anhdep/GRADUATE-BOX-3.webp',
+      '/anhdep/GRADUATE-BOX-4.webp'
+    ],
+    options: [
+      {
+        name: 'Mẫu',
+        values: [
+          { name: 'Box Tháng Ba' }
+        ]
+      },
+      {
+        name: 'Thiệp',
+        values: [
+          { name: 'Thiệp Love You So Much 1' }
+        ]
+      }
+    ],
+    tabs: {
+      description: `Set Quà Cử Nhân Mini Hành Trang Nhỏ Ý Nghĩa.
+
+Dành tặng cho những người bạn thân, người thương yêu trong ngày lễ tốt nghiệp rực rỡ. Set quà Cử nhân Mini là lời chúc mừng tươi tắn nhất gửi đến các tân cử nhân.
+
+Điểm nhấn của sản phẩm nằm ở sự tinh tế, một set quà mini nhưng đầy đủ trọn vẹn và vô cùng ý nghĩa. Một món quà nhỏ nhắn nhưng gói trọn sự chân thành, động lực cho chặng đường rực rỡ phía trước.
+
+🎁 CỬ NHÂN MINI BOX bao gồm:
++ Bút viết
++ Thiệp chúc mừng For The Record
++ Hoa giấy mini hoặc hoa tulip
++ Hộp đựng quà`,
+      video: '',
+      includes: [
+        { name: 'Bút viết', image: '/anhdep/GRADUATE-BOX-2.webp', quantity: 1 },
+        { name: 'Thiệp chúc mừng For The Record', image: '/anhdep/GRADUATE-BOX-3.webp', quantity: 1 },
+        { name: 'Hoa giấy mini hoặc hoa tulip', image: '/anhdep/GRADUATE-BOX-4.webp', quantity: 1 },
+        { name: 'Hộp đựng quà', image: '/anhdep/hop-qua.webp', quantity: 1 }
+      ]
+    }
+  },
+  {
+    id: 3,
     name: 'GRADUATE BOX',
     price: '359.000đ',
     originalPrice: '399.000đ',
     badge: '',
     image: '/anhdep/GRADUATE-BOX-1.webp',
-    description: 'Quà tặng mừng tốt nghiệp, sinh nhật.',
+    description: 'Set quà Graduate Vạn Hành Trang Ngày Tốt Nghiệp.\n\nDành tặng bạn thân, người thương hay đồng nghiệp trong ngày lễ tốt nghiệp trọng đại, Graduate Box là lời chúc mừng vô cùng tươi sáng và thiết thực.\n\nSet quà ghi điểm bởi sự hữu dụng vượt trội với bộ sậu hoàn hảo đồng hành cùng ngày đi làm sắp tới: bình giữ nhiệt, bút, khung ảnh kỷ niệm, lọ cử nhân ý nghĩa và bó hoa mini ngọt ngào. Set quà có 02 phiên bản màu sắc tinh tế phù hợp cho cả nam và nữ.',
     category: 'Set quà',
-
+    freePhoto: true,
     capacity: 130,
-    tags: ['Đám cưới', 'Kỷ niệm'],
+    tags: ['Kỷ niệm Tốt nghiệp', 'Kỷ niệm'],
     additionalImages: [
       '/anhdep/GRADUATE-BOX-2.webp',
       '/anhdep/GRADUATE-BOX-3.webp',
@@ -85,289 +137,242 @@ export const rawProducts = [
       '/anhdep/GRADUATE-BOX-7.webp',
       '/anhdep/GRADUATE-BOX-8.webp'
     ],
-    mauOptions: [
-      { id: 'box_wedding_1', name: 'Hộp Trắng', image: '/anhdep/GRADUATE-BOX-2.webp' },
-      { id: 'box_wedding_2', name: 'Hộp Đen', image: '/anhdep/GRADUATE-BOX-1.webp' }
-    ],
-    cardOptions: [
-      { id: 'card_wedding_1', name: 'You Are The Best', icon: '' },
-      { id: 'card_wedding_1', name: 'I Love You So Much', icon: '' }
+    options: [
+      {
+        name: 'Màu sắc',
+        values: [
+          { name: 'Đen' }
+        ]
+      }
     ],
     tabs: {
-      description: `Set quà Tiệm 1998 GRADUATE BOX - Quà tặng mừng tốt nghiệp, sinh nhật dành cho bạn nam và bạn nữ
+      description: `Set quà Graduate Vạn Hành Trang Ngày Tốt Nghiệp.
+
+Dành tặng bạn thân, người thương hay đồng nghiệp trong ngày lễ tốt nghiệp trọng đại, Graduate Box là lời chúc mừng vô cùng tươi sáng và thiết thực.
+
+Set quà ghi điểm bởi sự hữu dụng vượt trội với bộ sậu hoàn hảo đồng hành cùng ngày đi làm sắp tới: bình giữ nhiệt, bút, khung ảnh kỷ niệm, lọ cử nhân ý nghĩa và bó hoa mini ngọt ngào. Set quà có 02 phiên bản màu sắc tinh tế phù hợp cho cả nam và nữ.
 
 🎁 GRADUATE BOX bao gồm:
-
-+ Sổ tay Crabit khổ A5
-+ Bình giữ nhiệt Coffee dung tích 400ml
-+ Lọ viết tiếp ước mơ ver Cử nhân bao gồm 50 tờ note do chính bạn tự viết lời nhắn
-+ Bút viết
-+ Khung Ảnh A5 cá nhân hóa
-+ Hoa giấy mini 
-+ Ảnh in theo yêu cầu kích thước 6x9cm
-+ Thiệp chúc mừng kích thước 12x18cm
-+ Hộp & Túi giấy đựng quà
-
-Sau khi đặt hàng, nhắn mã vận đơn và gửi bức ảnh mà bạn muốn in qua Chat Shop
-
-📌Tiệm 1998 cam kết:
-
-- Đổi trả miễn phí và hoàn tiền 100% sản phẩm lỗi
-- Sản phẩm phụ kiện đúng như ảnh
-- Hỗ trợ tư vấn 24/7, ship hỏa tốc 4h trong nội thành Hà Nội.
-
-#tiem1998 #tiemquatang #quatang #quasinhnhat #quatangbangai #quatangnguoiyeu #quatangkyniem #quavalentine #qua83 #qua2010 #qualuuniem #quaxinloi #quatotnghiep #quatangvanphong #graduatebox`,
++ Bình giữ nhiệt Coffee
++ Lọ cử nhân
++ Khung ảnh cá nhân hóa
++ Thiệp chúc mừng kích thước 12x
++ Hộp giấy đựng quà`,
       video: '',
       includes: [
-        { name: 'Sổ tay Crabit khổ A5', image: '/anhdep/GRADUATE-BOX-2.webp', quantity: 1 },
-        { name: 'Bình giữ nhiệt Coffee dung tích 400ml', image: '/anhdep/GRADUATE-BOX-2.webp', quantity: 1 },
-        { name: 'Lọ viết tiếp ước mơ ver Cử nhân bao gồm 50 tờ note do chính bạn tự viết lời nhắn', image: '/anhdep/GRADUATE-BOX-2.webp', quantity: 1 },
-        { name: 'Bút viết', image: '/anhdep/GRADUATE-BOX-2.webp', quantity: 1 },
-        { name: 'Thiệp chúc mừng kích thước 12x18cm', image: '/anhdep/GRADUATE-BOX-2.webp', quantity: 1 },
-        { name: 'Khung Ảnh A5 cá nhân hóa', image: '/anhdep/GRADUATE-BOX-2.webp', quantity: 1 },
-        { name: 'Ảnh in theo yêu cầu kích thước 6x9cm', image: '/anhdep/GRADUATE-BOX-2.webp', quantity: 1 },
-        { name: 'Hoa giấy mini ', image: '/anhdep/GRADUATE-BOX-2.webp', quantity: 1 },
-        { name: ' Hộp & Túi đựng quà', image: '/anhdep/GRADUATE-BOX-2.webp', quantity: 1 }
+        { name: 'Bình giữ nhiệt Coffee', image: '/anhdep/GRADUATE-BOX-2.webp', quantity: 1 },
+        { name: 'Lọ cử nhân', image: '/anhdep/GRADUATE-BOX-3.webp', quantity: 1 },
+        { name: 'Khung ảnh cá nhân hóa', image: '/anhdep/GRADUATE-BOX-4.webp', quantity: 1 },
+        { name: 'Thiệp chúc mừng kích thước 12x', image: '/anhdep/GRADUATE-BOX-5.webp', quantity: 1 },
+        { name: 'Hộp giấy đựng quà', image: '/anhdep/hop-qua.webp', quantity: 1 }
       ]
+    }
+  },
+  {
+    id: 4,
+    name: 'MÓC KHÓA IN THEO YÊU CẦU / MÓC KHÓA IN VÂN TAY (1 SET 02 MÓC)',
+    price: '20.000đ',
+    badge: 'Mới',
+    image: 'https://images.unsplash.com/photo-1619134778706-7015533a6150?q=80&w=800&auto=format&fit=crop',
+    description: 'Móc khóa in Theo Yêu Cầu - Dấu Ấn Cá Nhân Trọn Vẹn.\nDù mang thiết kế nhỏ gọn nhưng móc khóa in theo yêu cầu lại là nơi lưu giữ trọn vẹn những kỷ niệm vô giá. Bạn có thể thỏa sức sáng tạo, in hình ảnh, lời chúc hoặc tọa độ đặc biệt mang câu chuyện của riêng mình.\n\nMóc Khóa In Vân Tay - Dấu Ấn Độc Bản, Gắn Kết Yêu Thương.\nMang thiết kế nhỏ gọn nhưng đong đầy ý nghĩa, móc khóa in vân tay theo yêu cầu là món quà tặng hoàn hảo giúp gắn kết tình cảm. Mỗi sản phẩm được Tiệm trao đi là một set quà vô cùng tinh tế...',
+    category: 'Sản phẩm lẻ',
+    freePhoto: true,
+    capacity: 200,
+    tags: ['Kỷ niệm', 'Sinh nhật', 'Đám cưới', 'Valentine 8/3', '20/10', '20/11'],
+    additionalImages: [
+      'https://images.unsplash.com/photo-1582139329536-e7284fece509?q=80&w=800&auto=format&fit=crop'
+    ],
+    options: [
+      {
+        name: 'Phân loại',
+        values: [
+          { name: 'in hình', price: '20.000đ' },
+          { name: 'Spotify', price: '22.000đ' },
+          { name: 'Kỷ thêm', price: '22.000đ' },
+          { name: '2 mặt khác nhau', price: '27.000đ' },
+          { name: 'Tình yêu', price: '50.000đ' },
+          { name: 'Kỷ niệm', price: '50.000đ' },
+          { name: 'Tình bạn', price: '50.000đ' },
+          { name: 'Tặng bạn nam', price: '50.000đ' }
+        ]
+      }
+    ],
+    tabs: {
+      description: `Móc khóa in Theo Yêu Cầu - Dấu Ấn Cá Nhân Trọn Vẹn.
+Dù mang thiết kế nhỏ gọn nhưng móc khóa in theo yêu cầu lại là nơi lưu giữ trọn vẹn những kỷ niệm vô giá. Bạn có thể thỏa sức sáng tạo, in hình ảnh, lời chúc hoặc tọa độ đặc biệt mang câu chuyện của riêng mình.
+
+Móc Khóa In Vân Tay - Dấu Ấn Độc Bản, Gắn Kết Yêu Thương.
+Mang thiết kế nhỏ gọn nhưng đong đầy ý nghĩa, móc khóa in vân tay theo yêu cầu là món quà tặng hoàn hảo giúp gắn kết tình cảm. Mỗi sản phẩm được Tiệm trao đi là một set quà vô cùng tinh tế, bao gồm đầy đủ đồ để in vân tay chuyên dụng. Chỉ với vài bước đơn giản, bạn đã có thể lưu giữ dấu vân tay của mình và người thương yêu trên chiếc móc khóa độc bản.`,
+      video: '',
+      includes: []
+    }
+  },
+  {
+    id: 5,
+    name: 'HUY CHƯƠNG IN THEO YÊU CẦU',
+    price: '50.000đ',
+    badge: 'Bán chạy',
+    image: '/anhdep/hc1.webp',
+    description: 'Huy Chương Theo Yêu Cầu - Vinh Danh Dấu Ấn Độc Bản.\nNếu bạn đang tìm kiếm một món quà tặng độc đáo để tạo sự bất ngờ, huy chương in theo yêu cầu chính là lựa chọn hoàn hảo. Sản phẩm vô cùng linh hoạt cực kỳ phù hợp với mọi dịp: từ quà tặng lễ tốt nghiệp rực rỡ, ngày kỷ niệm tình yêu, vinh danh "người yêu tốt nhất"...',
+    category: 'Sản phẩm lẻ',
+    freePhoto: true,
+    capacity: 150,
+    tags: ['Kỷ niệm', 'Sinh nhật', 'Đám cưới', 'Valentine 8/3', '20/10', '20/11'],
+    additionalImages: [
+      '/anhdep/hc2.webp',
+      '/anhdep/hc3.webp',
+      '/anhdep/hc4.webp'
+    ],
+    options: [
+      {
+        name: 'Phân loại',
+        values: [
+          { name: 'Tặng bạn nữ', price: '50.000đ' },
+          { name: 'Tặng tốt nghiệp', price: '50.000đ' },
+          { name: 'Dịp khác', price: '50.000đ' }
+        ]
+      }
+    ],
+    tabs: {
+      description: `Huy Chương Theo Yêu Cầu - Vinh Danh Dấu Ấn Độc Bản.
+Nếu bạn đang tìm kiếm một món quà tặng độc đáo để tạo sự bất ngờ, huy chương in theo yêu cầu chính là lựa chọn hoàn hảo. Sản phẩm vô cùng linh hoạt cực kỳ phù hợp với mọi dịp: từ quà tặng lễ tốt nghiệp rực rỡ, ngày kỷ niệm tình yêu, vinh danh "người yêu tốt nhất"...`,
+      video: '',
+      includes: []
     }
   },
   {
     id: 6,
-    name: 'FALL IN LUV BOX',
-    price: '179.000đ',
-    originalPrice: '199.000đ',
+    name: 'CARD SPOTIFY IN THEO YÊU CẦU (1 SET 08 CARDS)',
+    price: '50.000đ',
     badge: '',
-    image: '/anhdep/FALL-IN-LUV-BOX-1.webp',
-    description: 'Quà tặng mừng tốt nghiệp, sinh nhật.',
-    category: 'Set quà',
-    capacity: 50,
-    tags: ['Đám cưới', 'Kỷ niệm'],
+    image: 'https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?q=80&w=800&auto=format&fit=crop',
+    description: 'Card Spotify in Theo Yêu Cầu - Giai Điệu Lưu Giữ Yêu Thương.\nCard Spotify in theo yêu cầu là món quà tặng độc đáo giúp bạn thay lời muốn nói qua những giai điệu. Đây là cách tinh tế nhất để bạn lưu giữ bài hát yêu thích làm kỷ niệm hoặc khéo léo gửi gắm yêu thương chân thành đến người thương. 1 set bao gồm 8 card có thể in giống nhau hoặc khác nhau.',
+    category: 'Sản phẩm lẻ',
+    freePhoto: true,
+    capacity: 180,
+    tags: ['Kỷ niệm', 'Sinh nhật', 'Đám cưới', 'Valentine 8/3', '20/10', '20/11'],
     additionalImages: [
-      '/anhdep/FALL-IN-LUV-BOX-2.webp',
-      '/anhdep/FALL-IN-LUV-BOX-3.webp',
-      '/anhdep/FALL-IN-LUV-BOX-4.webp',
-      '/anhdep/FALL-IN-LUV-BOX-5.webp',
-      '/anhdep/FALL-IN-LUV-BOX-6.webp',
-      '/anhdep/FALL-IN-LUV-BOX-7.webp',
-      '/anhdep/khan-gau.webp'
+      'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=800&auto=format&fit=crop'
     ],
-    mauOptions: [
-      { id: 'box_wedding_1', name: 'FOR MEN', image: '/anhdep/FALL-IN-LUV-BOX-2.webp' },
-      { id: 'box_wedding_2', name: 'FOR WOMAN', image: '/anhdep/FALL-IN-LUV-BOX-3.webp' }
-    ],
-    cardOptions: [
-      { id: 'card_wedding_1', name: 'Happy Anniversary', icon: '' },
-      { id: 'card_wedding_1', name: 'Happy Valentine', icon: '' },
-      { id: 'card_wedding_1', name: 'Happy Birthday', icon: '' },
-      { id: 'card_wedding_1', name: 'Xmas Red', icon: '' },
-      { id: 'card_wedding_1', name: 'Xmas Green', icon: '' }
+    options: [
+      {
+        name: 'Phân loại',
+        values: [
+          { name: 'Mẫu 1 - Trắng', price: '50.000đ' },
+          { name: 'Mẫu 1 - Đen', price: '50.000đ' },
+          { name: 'Mẫu 2 - Trắng', price: '50.000đ' },
+          { name: 'Mẫu 2 - Đen', price: '50.000đ' },
+          { name: 'Mẫu 3', price: '50.000đ' }
+        ]
+      }
     ],
     tabs: {
-      description: `Set quà Tiệm 1998 FALL IN LUV BOX là set quà tặng gồm nhiều món quà handmade ý nghĩa dành cho bạn trai, bạn gái nhân ngày kỷ niệm tình yêu, Valentine, 8/3, 20/10, Noel,...
-
-*Set quà Tiệm 1998 FALL IN LUV BOX phiên bản FOR MEN bao gồm:
-- Love Box | Hộp Quà Tặng Album Ảnh Handmade (01 ảnh bìa + 06 ảnh bên trong)
-- Chứng Chỉ Tình Yêu dạng HUY CHƯƠNG | BEST BOYFRIEND EVER in ảnh 2 mặt
-- Khăn Mặt Gấu Bông màu ngẫu nhiên
-- Tất Ni. ke ĐEN 
-- Tất Ni. ke TRẮNG
-- Thiệp For The Record I Love You So Much
-- Hộp quà 20x18x8cm + Túi PE đựng quà
-
-*Set quà Tiệm 1998 FALL IN LUV BOX phiên bản FOR WOMEN bao gồm:
-- Love Box | Hộp Quà Tặng Album Ảnh Handmade (01 ảnh bìa + 06 ảnh bên trong)
-- Chứng Chỉ Tình Yêu dạng HUY CHƯƠNG | BEST GIRLFRIEND EVER in ảnh 2 mặt
-- Khăn Mặt Gấu Bông màu ngẫu nhiên
-- Túi Chườm Vải Nhung nóng/ lạnh dung tích 150ml màu ngẫu nhiên 
-- Sáp Thơm Hoa Hồng treo tủ quần áo, xe hơi
-- Thiệp For The Record I Love You So Much
-- Hộp quà 20x18x8cm + Túi PE đựng quà
-
-Sau khi đặt hàng, bạn vui lòng GỬI NGAY qua Chat Shop nhé!
-
-Những thông tin cần gửi bao gồm:
-1/ Ảnh in Love Box (01 ảnh bìa + 06 ảnh bên trong)
-2/ Ảnh in Huy Chương (mặt trước + mặt sau)
-
-Bạn vui lòng gửi ảnh trong vòng 1H sau khi đặt đơn để đảm bảo:
-+ Đơn hàng đặt trước 14h được gửi cho đơn vị vận chuyển ngay trong ngày.
-+ Đơn hàng đặt sau 14h sẽ gửi đơn vị vận chuyển vào ngày hôm sau.
-
-📌Tiệm 1998 cam kết:
-- Sản phẩm phụ kiện đúng như ảnh.
-- Hỗ trợ tư vấn 24/7, ship hỏa tốc 4h trong nội thành Hà Nội.
-
-#tiem1998 #tiemquatang #quatang #quasinhnhat #quatangbangai #quatangnguoiyeu #quatangkyniem #quavalentine #qua83 #qua2010 #qualuuniem #fallinluvbox"`,
+      description: `Card Spotify in Theo Yêu Cầu - Giai Điệu Lưu Giữ Yêu Thương.
+Card Spotify in theo yêu cầu là món quà tặng độc đáo giúp bạn thay lời muốn nói qua những giai điệu. Đây là cách tinh tế nhất để bạn lưu giữ bài hát yêu thích làm kỷ niệm hoặc khéo léo gửi gắm yêu thương chân thành đến người thương. 1 set bao gồm 8 card có thể in giống nhau hoặc khác nhau.`,
       video: '',
-      includes: [
-        { name: 'Sổ tay Crabit khổ A5', image: '/anhdep/FALL-IN-LUV-BOX-2.webp', quantity: 1 },
-        { name: 'Bình giữ nhiệt Coffee dung tích 400ml', image: '/anhdep/FALL-IN-LUV-BOX-2.webp', quantity: 1 },
-        { name: 'Lọ viết tiếp ước mơ ver Cử nhân bao gồm 50 tờ note do chính bạn tự viết lời nhắn', image: '/anhdep/GRADUATE-BOX-2.webp', quantity: 1 },
-        { name: 'Bút viết', image: '/anhdep/GRADUATE-BOX-2.webp', quantity: 1 },
-        { name: 'Thiệp chúc mừng kích thước 12x18cm', image: '/anhdep/GRADUATE-BOX-2.webp', quantity: 1 },
-        { name: 'Khung Ảnh A5 cá nhân hóa', image: '/anhdep/GRADUATE-BOX-2.webp', quantity: 1 },
-        { name: 'Ảnh in theo yêu cầu kích thước 6x9cm', image: '/anhdep/GRADUATE-BOX-2.webp', quantity: 1 },
-        { name: 'Hoa giấy mini ', image: '/anhdep/GRADUATE-BOX-2.webp', quantity: 1 },
-        { name: ' Hộp & Túi đựng quà', image: '/anhdep/GRADUATE-BOX-2.webp', quantity: 1 }
-      ]
+      includes: []
     }
   },
   {
     id: 7,
-    name: 'Hộp thông dụng',
-    price: '100.000đ',
+    name: 'ẢNH PHOTOBOOTH / PHOTOSTRIP IN THEO YÊU CẦU',
+    price: '40.000đ',
     badge: '',
-    image: '/anhdep/hop-qua.webp',
-    description: 'Trong suốt và lung linh, tôn vinh mọi món quà bên trong.',
-    category: 'Set quà',
-    isShell: true,
-    capacity: 12,
-    tags: ['Sinh nhật', 'Valentine']
+    image: 'https://images.unsplash.com/photo-1534067783941-51c9c23eccfd?q=80&w=800&auto=format&fit=crop',
+    description: 'Ảnh Photobooth & Photostrip in Theo Yêu Cầu - Cuộn Phim Lưu Giữ Thanh Xuân.\nNhững dải ảnh Photostrip hay Photobooth in theo yêu cầu không chỉ là món quà tặng nhỏ xinh mà còn là cách tuyệt vời nhất để bạn lưu giữ những khoảnh khắc thanh xuân rực rỡ. Sản phẩm mang thiết kế vintage, vô cùng lý tưởng để bạn thỏa sức sáng tạo: từ việc trang trí ốp lưng điện thoại, dán góc bàn học... 1 set bao gồm 6 ảnh có thể in giống nhau hoặc khác nhau.',
+    category: 'Sản phẩm lẻ',
+    freePhoto: true,
+    capacity: 300,
+    tags: ['Kỷ niệm', 'Sinh nhật', 'Đám cưới', 'Valentine', '8/3', '20/10', '20/11'],
+    additionalImages: [
+      'https://images.unsplash.com/photo-1542038784456-1ea8e935640e?q=80&w=800&auto=format&fit=crop'
+    ],
+    options: [
+      {
+        name: 'Phân loại',
+        values: [
+          { name: 'Ảnh PTB 5x15cm', price: '40.000đ' },
+          { name: 'Ảnh PTB 10x15cm', price: '75.000đ' },
+          { name: 'Khung trắng 03 ảnh', price: '50.000đ' },
+          { name: 'Khung trắng 04 ảnh', price: '60.000đ' },
+          { name: 'Khung đen 03 ảnh', price: '50.000đ' },
+          { name: 'Khung đen 04 ảnh', price: '60.000đ' },
+          { name: 'Khung film', price: '50.000đ' },
+          { name: 'Chèn chữ A', price: '60.000đ' },
+          { name: 'Chèn chữ B', price: '60.000đ' },
+          { name: 'Chèn chữ C', price: '60.000đ' },
+          { name: 'Tràn viền', price: '40.000đ' }
+        ]
+      }
+    ],
+    tabs: {
+      description: `Ảnh Photobooth & Photostrip in Theo Yêu Cầu - Cuộn Phim Lưu Giữ Thanh Xuân.
+Những dải ảnh Photostrip hay Photobooth in theo yêu cầu không chỉ là món quà tặng nhỏ xinh mà còn là cách tuyệt vời nhất để bạn lưu giữ những khoảnh khắc thanh xuân rực rỡ. Sản phẩm mang thiết kế vintage, vô cùng lý tưởng để bạn thỏa sức sáng tạo. 1 set bao gồm 6 ảnh có thể in giống nhau hoặc khác nhau.`,
+      video: '',
+      includes: []
+    }
   },
   {
     id: 8,
-    name: 'Hộp Nhung Ruby Red',
-    price: '100.000đ',
+    name: 'ẢNH 6X9CM IN THEO YÊU CẦU (1 SET 10 ẢNH)',
+    price: '40.000đ',
     badge: '',
-    image: '/anhdep/hop-qua.webp',
-    description: 'Lớp nhung đỏ quý phái cho những dịp đặc biệt.',
-    category: 'Set quà',
-    isShell: true,
-    capacity: 15,
-    tags: ['Đám cưới', 'Valentine']
-  },
-  {
-    id: 2,
-    name: 'Hộp quà basic',
-    price: '99.000đ',
-    badge: '',
-    image: '/anhdep/hop-qua.webp',
-    description: 'Lưu giữ những khoảnh khắc đáng nhớ nhất.',
-    category: 'Set quà',
-    isShell: true,
-    size: 4,
-    tags: ['Kỷ niệm', 'Valentine']
-  },
-  {
-    id: 3,
-    name: 'Nến Thơm Thư Giãn',
-    price: '250.000đ',
-    badge: '',
-    image: 'https://images.unsplash.com/photo-1603006905003-be475563bc59?q=80&w=600&auto=format&fit=crop',
-    description: 'Hương thơm tự nhiên giúp giảm căng thẳng.',
+    image: 'https://images.unsplash.com/photo-1513201099705-a9746e1e201f?q=80&w=800&auto=format&fit=crop',
+    description: 'Ảnh 6x9cm in Theo Yêu Cầu - Lưu Giữ Trọn Vẹn Ký Ức.\nẢnh 6x9cm in theo yêu cầu là lựa chọn hoàn hảo để bạn hiện thực hóa và lưu giữ trọn vẹn những kỷ niệm quý giá. Với kích thước 6x9cm nhỏ gọn, tinh tế rất lý tưởng để bạn thỏa sức sáng tạo: trang trí không gian sống, góc bàn làm việc, làm bookmark... 1 set bao gồm 10 ảnh có thể in giống nhau hoặc khác nhau.',
     category: 'Sản phẩm lẻ',
-    size: 2,
-    tags: ['Sinh nhật', 'Kỷ niệm', 'Ngày của mẹ']
-  },
-  {
-    id: 4,
-    name: 'Sổ Tay Ghi Chép Cao Cấp',
-    price: '150.000đ',
-    image: 'https://images.unsplash.com/photo-1544967082-b9d25d856510?q=80&w=600&auto=format&fit=crop',
-    description: 'Chất liệu giấy cao cấp, thiết kế tinh tế.',
-    category: 'Sản phẩm lẻ',
-    size: 2,
-    tags: ['Sinh nhật', 'Cảm ơn']
+    freePhoto: true,
+    capacity: 350,
+    tags: ['Kỷ niệm', 'Sinh nhật', 'Đám cưới', 'Valentine 8/3', '20/10', '20/11'],
+    additionalImages: [
+      'https://images.unsplash.com/photo-1527529482837-4698179dc6ce?q=80&w=800&auto=format&fit=crop'
+    ],
+    options: [
+      {
+        name: 'Phân loại',
+        values: [
+          { name: 'Viền nhỏ', price: '40.000đ' },
+          { name: 'Viền trắng', price: '40.000đ' },
+          { name: 'Viền màu', price: '40.000đ' },
+          { name: 'Chèn chữ', price: '50.000đ' }
+        ]
+      }
+    ],
+    tabs: {
+      description: `Ảnh 6x9cm in Theo Yêu Cầu - Lưu Giữ Trọn Vẹn Ký Ức.
+Ảnh 6x9cm in theo yêu cầu là lựa chọn hoàn hảo để bạn hiện thực hóa và lưu giữ trọn vẹn những kỷ niệm quý giá. Với kích thước 6x9cm nhỏ gọn, tinh tế rất lý tưởng để bạn thỏa sức sáng tạo: trang trí không gian sống, góc bàn làm việc, làm bookmark... 1 set bao gồm 10 ảnh có thể in giống nhau hoặc khác nhau.`,
+      video: '',
+      includes: []
+    }
   },
   {
     id: 9,
-    name: 'Trà Hoa Cúc Chi',
-    price: '120.000đ',
-    image: 'https://images.unsplash.com/photo-1594631252845-29fc4586236b?q=80&w=600&auto=format&fit=crop',
-    description: 'Trà thảo mộc thanh nhiệu, đẹp da.',
+    name: 'CHỨNG NHẬN IN THEO YÊU CẦU',
+    price: '20.000đ',
+    badge: '',
+    image: 'https://images.unsplash.com/photo-1589330694653-ded6df53f7ec?q=80&w=800&auto=format&fit=crop',
+    description: 'Chứng Nhận In Theo Yêu Cầu - Món Quà Ý Nghĩa Độc Đáo.\nGiấy chứng nhận in theo yêu cầu của Tiệm 1998 là cách hoàn hảo để vinh danh tình cảm, tình bạn hoặc các sự kiện kỷ niệm đáng nhớ. Thiết kế tinh tế, sắc sảo tôn vinh mọi mối quan hệ.',
     category: 'Sản phẩm lẻ',
-    size: 2,
-    tags: ['Sức khỏe', 'Ngày của mẹ', 'Cảm ơn']
-  },
-  {
-    id: 10,
-    name: 'Cà Phê Arabica Cầu Đất',
-    price: '180.000đ',
-    image: 'https://images.unsplash.com/photo-1559056199-641a0ac8b55e?q=80&w=600&auto=format&fit=crop',
-    description: 'Hương vị đậm đà từ vùng cao nguyên.',
-    category: 'Sản phẩm lẻ',
-    size: 3,
-    tags: ['Sinh nhật', 'Tân gia']
-  },
-  {
-    id: 11,
-    name: 'Socola Hand-made',
-    price: '95.000đ',
-    image: 'https://images.unsplash.com/photo-1548335132-95bb8fd45100?q=80&w=600&auto=format&fit=crop',
-    description: 'Ngọt ngào và tan chảy ngay từ lần đầu.',
-    category: 'Sản phẩm lẻ',
-    size: 1,
-    tags: ['Valentine', 'Sinh nhật', '8/3']
-  },
-  {
-    id: 12,
-    name: 'Bánh Quy Bơ Pháp',
-    price: '150.000đ',
-    image: 'https://images.unsplash.com/photo-1558961312-50346c0998d5?q=80&w=600&auto=format&fit=crop',
-    description: 'Giòn tan, thơm nức mùi bơ.',
-    category: 'Sản phẩm lẻ',
-    size: 2,
-    tags: ['Tân gia', 'Sinh nhật', 'Cảm ơn']
-  },
-  {
-    id: 13,
-    name: 'Khăn Quàng Lụa Tơ Tằm',
-    price: '350.000đ',
-    image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=600&auto=format&fit=crop',
-    description: 'Mềm mại, sang trọng và quý phái.',
-    category: 'Sản phẩm lẻ',
-    size: 1,
-    tags: ['Ngày của mẹ', 'Valentine', '8/3']
-  },
-  {
-    id: 14,
-    name: 'Ly Sứ Minh Long',
-    price: '130.000đ',
-    image: 'https://images.unsplash.com/photo-1542156822-6924d1a71ace?q=80&w=600&auto=format&fit=crop',
-    description: 'Chất liệu men cao cấp, sắc sảo.',
-    category: 'Sản phẩm lẻ',
-    size: 3,
-    tags: ['Tân gia', 'Cảm ơn']
-  },
-  {
-    id: 15,
-    name: 'Mật Ong Rừng U Minh',
-    price: '220.000đ',
-    image: 'https://images.unsplash.com/photo-1587049352846-4a222e784d38?q=80&w=600&auto=format&fit=crop',
-    description: 'Mật ong nguyên chất tốt cho sức khỏe.',
-    category: 'Sản phẩm lẻ',
-    size: 2,
-    tags: ['Sức khỏe', 'Cảm ơn']
-  },
-  {
-    id: 16,
-    name: 'Túi Thơm Thảo Mộc',
-    price: '45.000đ',
-    image: 'https://images.unsplash.com/photo-1616719113693-018cefc17e2e?q=80&w=600&auto=format&fit=crop',
-    description: 'Hương thơm dễ chịu cho tủ đồ của bạn.',
-    category: 'Sản phẩm lẻ',
-    size: 1,
-    tags: ['Sinh nhật', 'Ngày của mẹ']
-  },
-  {
-    id: 17,
-    name: 'Thìa Gỗ Dừa',
-    price: '30.000đ',
-    image: 'https://images.unsplash.com/photo-1563861826100-9cb868fdbe1c?q=80&w=600&auto=format&fit=crop',
-    description: 'Vật dụng thân thiện với môi trường.',
-    category: 'Sản phẩm lẻ',
-    size: 1,
-    tags: ['Tân gia', 'Cảm ơn']
-  },
-  {
-    id: 18,
-    name: 'Bình Giữ Nhiệt Lốc Xoáy',
-    price: '280.000đ',
-    image: 'https://images.unsplash.com/photo-1544200175-ca6e80a7b323?q=80&w=600&auto=format&fit=crop',
-    description: 'Giữ nhiệt cực tốt, thiết kế cá tính.',
-    category: 'Sản phẩm lẻ',
-    size: 4,
-    tags: ['Sinh nhật', 'Tân gia']
+    freePhoto: true,
+    capacity: 250,
+    tags: ['Kỷ niệm', 'Sinh nhật', 'Đám cưới', 'Valentine', '8/3', '20/10', '20/11'],
+    additionalImages: [
+      'https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?q=80&w=800&auto=format&fit=crop'
+    ],
+    options: [
+      {
+        name: 'Phân loại',
+        values: [
+          { name: 'GIẤY CHỨNG NHẬN A5', price: '20.000đ' },
+          { name: 'GIẤY CHỨNG NHẬN KÈM KHUNG', price: '50.000đ' }
+        ]
+      }
+    ],
+    tabs: {
+      description: `Chứng Nhận In Theo Yêu Cầu - Món Quà Ý Nghĩa Độc Đáo.
+Giấy chứng nhận in theo yêu cầu của Tiệm 1998 là cách hoàn hảo để vinh danh tình cảm, tình bạn hoặc các sự kiện kỷ niệm đáng nhớ. Thiết kế tinh tế, sắc sảo tôn vinh mọi mối quan hệ.`,
+      video: '',
+      includes: []
+    }
   }
 ];
 
@@ -395,22 +400,15 @@ export const categories = [
   {
     id: 'set-qua',
     title: 'Set quà',
-    count: '5+',
+    count: '3',
     image: '/anhdep/hop-qua.webp',
     color: 'bg-rose-100',
   },
   {
     id: 'san-pham-le',
     title: 'Sản phẩm lẻ',
-    count: '10+',
-    image: '/anhdep/GRADUATE-BOX-4.webp',
-    color: 'bg-blue-100',
-  },
-  {
-    id: 'bo-s',
-    title: 'Dịch Vụ',
-    count: '',
-    image: '/anhdep/GRADUATE-BOX-5.webp',
+    count: '6',
+    image: 'https://images.unsplash.com/photo-1619134778706-7015533a6150?q=80&w=400&auto=format&fit=crop',
     color: 'bg-blue-100',
   }
 ];

@@ -167,6 +167,22 @@ const ProductDetailPage = ({ onNavigate }) => {
     });
   };
 
+  const getActivePrice = () => {
+    if (!displayData) return '0đ';
+    let currentPrice = displayData.price;
+    // Check if any selected variant has a specific price
+    optionGroups.forEach(group => {
+      const selectedValue = selectedVariants[group.name];
+      if (selectedValue) {
+        const valObj = group.values.find(v => v.name === selectedValue);
+        if (valObj && valObj.price) {
+          currentPrice = valObj.price;
+        }
+      }
+    });
+    return currentPrice;
+  };
+
   const getCartItem = async () => {
     const variantIdSuffix = Object.values(selectedVariants).join('_') || 'default';
     const variantString = Object.entries(selectedVariants).map(([k, v]) => `${k}: ${v}`).join(', ');
@@ -179,7 +195,7 @@ const ProductDetailPage = ({ onNavigate }) => {
     return {
       id: `${displayData.id}_${variantIdSuffix}`.replace(/[\s\/]/g, '-'),
       name: displayData.name,
-      price: displayData.price,
+      price: getActivePrice(),
       image: displayData.image,
       category: displayData.category,
       tabs: displayData.tabs,
@@ -279,7 +295,7 @@ const ProductDetailPage = ({ onNavigate }) => {
             </h1>
             
             <div className="flex items-center gap-3 mb-2 mt-2">
-              <span className="text-[32px] font-bold text-[#800000] leading-none">{displayData.price}</span>
+              <span className="text-[32px] font-bold text-[#800000] leading-none">{getActivePrice()}</span>
               {displayData.originalPrice && (
                 <span className="text-gray-400 text-lg line-through font-medium self-end pb-[2px]">{displayData.originalPrice}</span>
               )}
