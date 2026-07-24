@@ -391,8 +391,7 @@ Card Spotify in theo yêu cầu là món quà tặng độc đáo, giúp bạn t
           { name: 'Khung film', price: '50.000đ', image: '/anhdep/ẢNH PHOTOBOOTH, PHOTOSTRIP IN THEO YÊU CẦU/PHÂN LOẠI/ảnh-photostrip-khung-film.png' },
           { name: 'Chèn chữ A', price: '60.000đ', image: '/anhdep/ẢNH PHOTOBOOTH, PHOTOSTRIP IN THEO YÊU CẦU/PHÂN LOẠI/ảnh-photostrip-khung-chèn-chữ-A.png' },
           { name: 'Chèn chữ B', price: '60.000đ', image: '/anhdep/ẢNH PHOTOBOOTH, PHOTOSTRIP IN THEO YÊU CẦU/PHÂN LOẠI/ảnh-photostrip-khung-chèn-chữ-B.png' },
-          { name: 'Chèn chữ C', price: '60.000đ', image: '/anhdep/ẢNH PHOTOBOOTH, PHOTOSTRIP IN THEO YÊU CẦU/PHÂN LOẠI/ảnh-photostrip-khung-chèn-chữ-C.png' },
-          { name: 'Tràn viền', price: '40.000đ' }
+          { name: 'Chèn chữ C', price: '60.000đ', image: '/anhdep/ẢNH PHOTOBOOTH, PHOTOSTRIP IN THEO YÊU CẦU/PHÂN LOẠI/ảnh-photostrip-khung-chèn-chữ-C.png' }
         ]
       }
     ],
