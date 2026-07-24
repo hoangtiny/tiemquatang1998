@@ -16,6 +16,7 @@ const ProductDetailPage = ({ onNavigate }) => {
   const [loading, setLoading] = useState(true);
 
   const [activeImage, setActiveImage] = useState(0);
+  const [overrideImage, setOverrideImage] = useState(null);
   const [startIndex, setStartIndex] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [selectedVariants, setSelectedVariants] = useState({});
@@ -34,6 +35,8 @@ const ProductDetailPage = ({ onNavigate }) => {
         const data = products.find(p => p.slug === slug);
         if (data) {
           setProductData(data);
+          setActiveImage(0);
+          setOverrideImage(null);
         } else {
           setProductData(null);
         }
@@ -196,7 +199,7 @@ const ProductDetailPage = ({ onNavigate }) => {
       id: `${displayData.id}_${variantIdSuffix}`.replace(/[\s\/]/g, '-'),
       name: displayData.name,
       price: getActivePrice(),
-      image: displayData.image,
+      image: overrideImage || displayData.image,
       category: displayData.category,
       tabs: displayData.tabs,
       variants: variantString,
@@ -234,12 +237,12 @@ const ProductDetailPage = ({ onNavigate }) => {
             <div className="aspect-square rounded-[20px] overflow-hidden bg-gray-50 border border-gray-100 relative group">
               <AnimatePresence mode="wait">
                 <motion.img 
-                  key={activeImage}
+                  key={overrideImage || activeImage}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.3 }}
-                  src={productImages[activeImage]} 
+                  src={overrideImage || productImages[activeImage]} 
                   alt="Product Image" 
                   className="w-full h-full object-cover transform lg:group-hover:scale-110 transition-transform duration-500 cursor-zoom-in"
                 />
@@ -257,7 +260,10 @@ const ProductDetailPage = ({ onNavigate }) => {
                   return (
                     <div 
                       key={actualIndex}
-                      onClick={() => setActiveImage(actualIndex)}
+                      onClick={() => {
+                        setActiveImage(actualIndex);
+                        setOverrideImage(null);
+                      }}
                       className={`aspect-square rounded-sm overflow-hidden cursor-pointer transition-all border-2 ${
                         activeImage === actualIndex ? 'border-[#ee4d2d]' : 'border-transparent hover:border-[#ee4d2d]/50'
                       }`}
@@ -327,7 +333,12 @@ const ProductDetailPage = ({ onNavigate }) => {
                         return (
                           <button
                             key={vIdx}
-                            onClick={() => setSelectedVariants({...selectedVariants, [group.name]: val.name})}
+                            onClick={() => {
+                              setSelectedVariants({...selectedVariants, [group.name]: val.name});
+                              if (val.image) {
+                                setOverrideImage(val.image);
+                              }
+                            }}
                             className={`relative flex items-center justify-center gap-2 px-3 py-2 border rounded-md transition-all focus:outline-none bg-white overflow-hidden min-w-[3.5rem] min-h-[2.5rem] ${
                               isSelected 
                                 ? 'border-[#8c1515] text-[#1e3a8a]' 
