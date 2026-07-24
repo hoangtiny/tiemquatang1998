@@ -629,10 +629,10 @@ const ProductDetailPage = ({ onNavigate }) => {
             {activeTab === 'delivery' && (
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
                 <h4 className="font-bold text-dark mb-2">Thời gian giao hàng:</h4>
-                <p className="mb-4">- Nội thành HN & HCM: Giao hỏa tốc 2H hoặc trong ngày.</p>
+                <p className="mb-2">- Hà Nội: Hỗ trợ giao hỏa tốc 4H hoặc ship thường 1-2 ngày (không tính chủ nhật).</p>
                 <p className="mb-6">- Các tỉnh thành khác: Từ 2-4 ngày làm việc tuỳ khu vực.</p>
                 <h4 className="font-bold text-dark mb-2">Quy cách đóng gói:</h4>
-                <p>Mỗi set quà được lót giấy rơm chống sốc, chèn xốp bong bóng cẩn thận và đặt trong hộp carton cứng bảo vệ bên ngoài, đảm bảo không móp méo khi vận chuyển xa.</p>
+                <p>Sản phẩm được bọc chống sốc và đặt trong hộp carton cứng bảo vệ bên ngoài, đảm bảo không móp méo khi vận chuyển xa.</p>
               </motion.div>
             )}
 
