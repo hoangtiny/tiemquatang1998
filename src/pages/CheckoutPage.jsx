@@ -93,9 +93,9 @@ const CheckoutPage = () => {
   };
 
   const subtotal = checkoutItems.reduce((total, item) => total + (parsePrice(item.price) * item.quantity), 0);
-  const shippingFee = 0;
+  const shippingFee = deliveryMethod === 'pickup' ? 0 : (subtotal >= 399000 ? 0 : 20000);
   const discountAmount = 0; // Mock discount logic can be added later
-  const finalTotal = subtotal - discountAmount;
+  const finalTotal = subtotal + shippingFee - discountAmount;
 
   // Validate info
   const isDeliveryInfoValid = deliveryMethod === 'pickup'
@@ -150,7 +150,7 @@ const CheckoutPage = () => {
       items: checkoutItems,
       detailed_items: detailed_items, // Send detailed string for Sheets
       subtotal: subtotal,
-      shipping_fee: 0,
+      shipping_fee: shippingFee,
       discount: discountAmount,
       total: finalTotal,
       total_formatted: formatPrice(finalTotal),
@@ -306,11 +306,6 @@ const CheckoutPage = () => {
                         </div>
                       </div>
 
-                      <div className="space-y-1">
-                        <label className="text-xs font-bold text-[#2c3e50] ml-1">Email: <span className="text-[#8b1a1a]">*</span></label>
-                        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required placeholder="Email..." className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-[#8b1a1a]/20 focus:border-[#8b1a1a] outline-none transition-all placeholder:text-gray-400" />
-                      </div>
-
                       {/* Expected Date & Express Shipping Removed */}
 
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 pt-4">
@@ -384,18 +379,14 @@ const CheckoutPage = () => {
                         <p className="text-[13px] font-bold text-[#1e3a5f] flex items-center gap-2">📞 0339.267.766</p>
                       </div>
 
-                      <div className="grid grid-cols-1 gap-5">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                         <div className="space-y-1">
                           <label className="text-xs font-bold text-[#2c3e50] ml-1">Họ và tên: <span className="text-[#8b1a1a]">*</span></label>
                           <input type="text" value={customerName} onChange={(e) => setCustomerName(e.target.value)} required placeholder="Họ và tên người nhận..." className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-[#8b1a1a]/20 focus:border-[#8b1a1a] outline-none transition-all placeholder:text-gray-400" />
                         </div>
-                        <div className="space-y-1 flex-1">
+                        <div className="space-y-1">
                           <label className="text-xs font-bold text-[#2c3e50] ml-1">Số điện thoại: <span className="text-[#8b1a1a]">*</span></label>
                           <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} required pattern="^0(3|5|7|8|9)[0-9]{8}$" placeholder="Số điện thoại..." className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-[#8b1a1a]/20 focus:border-[#8b1a1a] outline-none transition-all placeholder:text-gray-400" />
-                        </div>
-                        <div className="space-y-1 flex-1">
-                          <label className="text-xs font-bold text-[#2c3e50] ml-1">Email: <span className="text-[#8b1a1a]">*</span></label>
-                          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required placeholder="Email..." className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-[#8b1a1a]/20 focus:border-[#8b1a1a] outline-none transition-all placeholder:text-gray-400" />
                         </div>
                       </div>
                     </div>
@@ -501,8 +492,20 @@ const CheckoutPage = () => {
                 </div>
                 <div className="flex justify-between items-center text-[13px]">
                   <span className="text-[#475569]">Phí giao hàng:</span>
-                  <span className="font-semibold text-green-600">Miễn phí</span>
+                  {shippingFee === 0 ? (
+                    <span className="font-semibold text-green-600">Miễn phí</span>
+                  ) : (
+                    <span className="font-semibold text-[#1e3a5f]">{formatPrice(shippingFee)}</span>
+                  )}
                 </div>
+                {deliveryMethod === 'delivery' && (
+                  <div className="space-y-1 pl-1 text-[11px] text-gray-400 italic leading-normal pb-1">
+                    {shippingFee > 0 && (
+                      <p>* Với những đơn hàng từ 399.000đ trở lên thì mặc định sẽ được miễn phí ship.</p>
+                    )}
+                    <p>* Ship sẽ báo lại phí ship cụ thể nếu khách hàng cần hỏa tốc</p>
+                  </div>
+                )}
                 <div className="flex justify-between items-center text-[13px]">
                   <span className="text-[#475569]">Giảm giá:</span>
                   <span className="font-medium text-[#1e3a5f]">0 đ</span>
