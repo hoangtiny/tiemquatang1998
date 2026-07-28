@@ -8,16 +8,16 @@ const CheckoutPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { cartItems, formatPrice } = useCart();
-  
+
   // Filter items if navigating from CartPage with selected specific items
   const selectedCartIds = location.state?.selectedItems || [];
-  const checkoutItems = selectedCartIds.length > 0 
+  const checkoutItems = selectedCartIds.length > 0
     ? cartItems.filter(item => selectedCartIds.includes(item.cartId))
     : cartItems;
 
   const [isSuccess, setIsSuccess] = useState(false);
   const [isSending, setIsSending] = useState(false);
-  
+
   // Form States
   const [deliveryMethod, setDeliveryMethod] = useState('delivery'); // 'delivery' or 'pickup'
   const [customerName, setCustomerName] = useState('');
@@ -27,7 +27,7 @@ const CheckoutPage = () => {
   const [note, setNote] = useState('');
   const [expectedDate, setExpectedDate] = useState('');
   const [isExpress, setIsExpress] = useState(false);
-  
+
   // Payment States
   const [paymentMethod, setPaymentMethod] = useState(''); // 'cod' or 'transfer'
   const [hasConfirmedTransfer, setHasConfirmedTransfer] = useState(false);
@@ -98,10 +98,10 @@ const CheckoutPage = () => {
   const finalTotal = subtotal - discountAmount;
 
   // Validate info
-  const isDeliveryInfoValid = deliveryMethod === 'pickup' 
+  const isDeliveryInfoValid = deliveryMethod === 'pickup'
     ? (customerName.trim() !== '' && /^0(3|5|7|8|9)[0-9]{8}$/.test(phone))
     : (customerName.trim() !== '' && address.trim() !== '' && selectedProvince && selectedDistrict && selectedWard && /^0(3|5|7|8|9)[0-9]{8}$/.test(phone));
-  
+
   // Calculate deposit for COD (50% rounded to nearest 50k)
   const depositAmount = Math.round((finalTotal * 0.5) / 50000) * 50000;
   const remainingAmount = finalTotal - depositAmount;
@@ -111,7 +111,7 @@ const CheckoutPage = () => {
     if (!isDeliveryInfoValid) return;
 
     setIsSending(true);
-    
+
     // Construct full address string
     let fullAddress = address;
     if (deliveryMethod === 'delivery' && selectedProvince) {
@@ -158,7 +158,7 @@ const CheckoutPage = () => {
       remaining: finalTotal,
       payment_method: 'Zalo',
       delivery_method: deliveryMethod,
-      status: 'pending' 
+      status: 'pending'
     };
 
     try {
@@ -219,10 +219,10 @@ const CheckoutPage = () => {
           items: itemsForSheets
         })
       });
-      
+
       setIsSending(false);
       setIsSuccess(true);
-      
+
       // Cleanup cart items that were checked out
       const remainingCart = cartItems.filter(ci => !checkoutItems.find(chi => chi.cartId === ci.cartId));
       localStorage.setItem('teamo_cart', JSON.stringify(remainingCart));
@@ -268,46 +268,46 @@ const CheckoutPage = () => {
     <div className="bg-gray-50 min-h-screen py-10 md:py-16">
       <div className="container-custom max-w-6xl">
         <h1 className="text-3xl font-bold text-[#1e3a5f] mb-10">Thanh toán</h1>
-        
+
         <form onSubmit={handleSubmit} className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14">
-          
+
           {/* Left Column */}
           <div className="lg:col-span-7 space-y-10">
             {/* Delivery Info */}
             <div className="space-y-6">
               <h2 className="text-[20px] font-bold text-[#1e3a5f]">Thông tin giao hàng</h2>
-              
+
               <div className="space-y-4">
                 {/* Option 1: Giao hàng */}
                 <div className={`border rounded-xl bg-white overflow-hidden transition-all ${deliveryMethod === 'delivery' ? 'border-[#8b1a1a] shadow-sm' : 'border-gray-200'}`}>
                   <label className="flex items-center gap-3 p-4 cursor-pointer hover:bg-gray-50 border-b border-gray-100">
-                    <input 
-                      type="radio" 
-                      name="deliveryMethod" 
+                    <input
+                      type="radio"
+                      name="deliveryMethod"
                       value="delivery"
                       checked={deliveryMethod === 'delivery'}
                       onChange={() => setDeliveryMethod('delivery')}
-                      className="text-[#8b1a1a] focus:ring-[#8b1a1a] w-5 h-5 cursor-pointer accent-[#8b1a1a]" 
+                      className="text-[#8b1a1a] focus:ring-[#8b1a1a] w-5 h-5 cursor-pointer accent-[#8b1a1a]"
                     />
                     <span className="font-bold text-[15px] text-[#1e3a5f]">Đặt hàng vào giao tới tôi</span>
                   </label>
-                  
+
                   {deliveryMethod === 'delivery' && (
                     <div className="p-6 space-y-5">
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                         <div className="space-y-1">
                           <label className="text-xs font-bold text-[#2c3e50] ml-1">Họ và tên: <span className="text-[#8b1a1a]">*</span></label>
-                          <input type="text" value={customerName} onChange={(e)=>setCustomerName(e.target.value)} required placeholder="Họ và tên người nhận..." className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-[#8b1a1a]/20 focus:border-[#8b1a1a] outline-none transition-all placeholder:text-gray-400" />
+                          <input type="text" value={customerName} onChange={(e) => setCustomerName(e.target.value)} required placeholder="Họ và tên người nhận..." className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-[#8b1a1a]/20 focus:border-[#8b1a1a] outline-none transition-all placeholder:text-gray-400" />
                         </div>
                         <div className="space-y-1">
                           <label className="text-xs font-bold text-[#2c3e50] ml-1">Số điện thoại: <span className="text-[#8b1a1a]">*</span></label>
-                          <input type="tel" value={phone} onChange={(e)=>setPhone(e.target.value)} required pattern="^0(3|5|7|8|9)[0-9]{8}$" placeholder="Số điện thoại..." className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-[#8b1a1a]/20 focus:border-[#8b1a1a] outline-none transition-all placeholder:text-gray-400" />
+                          <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} required pattern="^0(3|5|7|8|9)[0-9]{8}$" placeholder="Số điện thoại..." className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-[#8b1a1a]/20 focus:border-[#8b1a1a] outline-none transition-all placeholder:text-gray-400" />
                         </div>
                       </div>
-                      
+
                       <div className="space-y-1">
                         <label className="text-xs font-bold text-[#2c3e50] ml-1">Email: <span className="text-[#8b1a1a]">*</span></label>
-                        <input type="email" value={email} onChange={(e)=>setEmail(e.target.value)} required placeholder="Email..." className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-[#8b1a1a]/20 focus:border-[#8b1a1a] outline-none transition-all placeholder:text-gray-400" />
+                        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required placeholder="Email..." className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-[#8b1a1a]/20 focus:border-[#8b1a1a] outline-none transition-all placeholder:text-gray-400" />
                       </div>
 
                       {/* Expected Date & Express Shipping Removed */}
@@ -315,7 +315,7 @@ const CheckoutPage = () => {
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 pt-4">
                         <div className="space-y-1">
                           <label className="text-xs font-bold text-[#2c3e50] ml-1">Địa chỉ giao hàng <span className="text-[#8b1a1a]">*</span></label>
-                          <input type="text" value={address} onChange={(e)=>setAddress(e.target.value)} required placeholder="Địa chỉ giao hàng..." className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-[#8b1a1a]/20 focus:border-[#8b1a1a] outline-none transition-all placeholder:text-gray-400" />
+                          <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} required placeholder="Địa chỉ giao hàng..." className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-[#8b1a1a]/20 focus:border-[#8b1a1a] outline-none transition-all placeholder:text-gray-400" />
                         </div>
                         <div className="space-y-1">
                           <label className="text-xs font-bold text-[#2c3e50] ml-1">Tỉnh/Thành phố: <span className="text-[#8b1a1a]">*</span></label>
@@ -340,7 +340,7 @@ const CheckoutPage = () => {
                         <div className="space-y-1">
                           <label className="text-xs font-bold text-[#2c3e50] ml-1">Xã/phường: <span className="text-[#8b1a1a]">*</span></label>
                           <div className="relative">
-                            <select value={selectedWard} onChange={(e)=>setSelectedWard(e.target.value)} required disabled={!selectedDistrict} className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-[#8b1a1a]/20 focus:border-[#8b1a1a] outline-none transition-all text-gray-600 appearance-none bg-white pr-10 disabled:bg-gray-50">
+                            <select value={selectedWard} onChange={(e) => setSelectedWard(e.target.value)} required disabled={!selectedDistrict} className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-[#8b1a1a]/20 focus:border-[#8b1a1a] outline-none transition-all text-gray-600 appearance-none bg-white pr-10 disabled:bg-gray-50">
                               <option value="">Chọn xã/phường</option>
                               {wards.map(w => <option key={w.code} value={w.code}>{w.name}</option>)}
                             </select>
@@ -348,12 +348,12 @@ const CheckoutPage = () => {
                           </div>
                         </div>
                       </div>
-                      
+
                       {/* Shipping fee display removed */}
 
                       <div className="space-y-1 pt-2">
                         <label className="text-xs font-bold text-[#2c3e50] ml-1">Ghi chú:</label>
-                        <textarea rows="4" value={note} onChange={(e)=>setNote(e.target.value)} placeholder="Ghi chú cho Tiệm..." className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-[#8b1a1a]/20 focus:border-[#8b1a1a] outline-none transition-all placeholder:text-gray-400 resize-none"></textarea>
+                        <textarea rows="4" value={note} onChange={(e) => setNote(e.target.value)} placeholder="Ghi chú cho Tiệm..." className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-[#8b1a1a]/20 focus:border-[#8b1a1a] outline-none transition-all placeholder:text-gray-400 resize-none"></textarea>
                       </div>
                     </div>
                   )}
@@ -362,42 +362,42 @@ const CheckoutPage = () => {
                 {/* Option 2: Nhận tại cửa hàng */}
                 <div className={`border rounded-xl bg-white overflow-hidden transition-all ${deliveryMethod === 'pickup' ? 'border-[#8b1a1a] shadow-sm' : 'border-gray-200'}`}>
                   <label className="flex items-center gap-3 p-4 cursor-pointer hover:bg-gray-50">
-                    <input 
-                      type="radio" 
-                      name="deliveryMethod" 
+                    <input
+                      type="radio"
+                      name="deliveryMethod"
                       value="pickup"
                       checked={deliveryMethod === 'pickup'}
                       onChange={() => setDeliveryMethod('pickup')}
-                      className="text-[#8b1a1a] focus:ring-[#8b1a1a] w-5 h-5 cursor-pointer accent-[#8b1a1a]" 
+                      className="text-[#8b1a1a] focus:ring-[#8b1a1a] w-5 h-5 cursor-pointer accent-[#8b1a1a]"
                     />
                     <span className="font-bold text-[15px] text-[#1e3a5f]">Nhận tại cửa hàng</span>
                   </label>
-                  
-                  {deliveryMethod === 'pickup' && (
-                     <div className="p-6 pt-0 space-y-5 border-t border-gray-100 mt-2">
-                        <div className="bg-gray-50 p-4 rounded-xl mt-4 space-y-3">
-                           <p className="text-[13px] text-[#475569] leading-relaxed">
-                              Đơn hàng của bạn sẽ được chuẩn bị và sẵn sàng nhận tại kho của Tiệm 1998:
-                           </p>
-                           <p className="text-[13px] font-bold text-[#1e3a5f] flex items-center gap-2">📍 Ngõ 76 Đường Kim Hoàng, Xã Vân Canh, Huyện Hoài Đức, Hà Nội</p>
-                           <p className="text-[13px] font-bold text-[#1e3a5f] flex items-center gap-2">📞 0339.267.766</p>
-                        </div>
 
-                        <div className="grid grid-cols-1 gap-5">
-                          <div className="space-y-1">
-                            <label className="text-xs font-bold text-[#2c3e50] ml-1">Họ và tên: <span className="text-[#8b1a1a]">*</span></label>
-                            <input type="text" value={customerName} onChange={(e)=>setCustomerName(e.target.value)} required placeholder="Họ và tên người nhận..." className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-[#8b1a1a]/20 focus:border-[#8b1a1a] outline-none transition-all placeholder:text-gray-400" />
-                          </div>
-                          <div className="space-y-1 flex-1">
-                            <label className="text-xs font-bold text-[#2c3e50] ml-1">Số điện thoại: <span className="text-[#8b1a1a]">*</span></label>
-                            <input type="tel" value={phone} onChange={(e)=>setPhone(e.target.value)} required pattern="^0(3|5|7|8|9)[0-9]{8}$" placeholder="Số điện thoại..." className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-[#8b1a1a]/20 focus:border-[#8b1a1a] outline-none transition-all placeholder:text-gray-400" />
-                          </div>
-                          <div className="space-y-1 flex-1">
-                            <label className="text-xs font-bold text-[#2c3e50] ml-1">Email: <span className="text-[#8b1a1a]">*</span></label>
-                            <input type="email" value={email} onChange={(e)=>setEmail(e.target.value)} required placeholder="Email..." className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-[#8b1a1a]/20 focus:border-[#8b1a1a] outline-none transition-all placeholder:text-gray-400" />
-                          </div>
+                  {deliveryMethod === 'pickup' && (
+                    <div className="p-6 pt-0 space-y-5 border-t border-gray-100 mt-2">
+                      <div className="bg-gray-50 p-4 rounded-xl mt-4 space-y-3">
+                        <p className="text-[13px] text-[#475569] leading-relaxed">
+                          Đơn hàng của bạn sẽ được chuẩn bị và sẵn sàng nhận tại kho của Tiệm 1998:
+                        </p>
+                        <p className="text-[13px] font-bold text-[#1e3a5f] flex items-center gap-2">📍 Số 16D ngõ 14 Hậu Ái, xã Sơn Đồng, thành phố Hà Nội.</p>
+                        <p className="text-[13px] font-bold text-[#1e3a5f] flex items-center gap-2">📞 0339.267.766</p>
+                      </div>
+
+                      <div className="grid grid-cols-1 gap-5">
+                        <div className="space-y-1">
+                          <label className="text-xs font-bold text-[#2c3e50] ml-1">Họ và tên: <span className="text-[#8b1a1a]">*</span></label>
+                          <input type="text" value={customerName} onChange={(e) => setCustomerName(e.target.value)} required placeholder="Họ và tên người nhận..." className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-[#8b1a1a]/20 focus:border-[#8b1a1a] outline-none transition-all placeholder:text-gray-400" />
                         </div>
-                     </div>
+                        <div className="space-y-1 flex-1">
+                          <label className="text-xs font-bold text-[#2c3e50] ml-1">Số điện thoại: <span className="text-[#8b1a1a]">*</span></label>
+                          <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} required pattern="^0(3|5|7|8|9)[0-9]{8}$" placeholder="Số điện thoại..." className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-[#8b1a1a]/20 focus:border-[#8b1a1a] outline-none transition-all placeholder:text-gray-400" />
+                        </div>
+                        <div className="space-y-1 flex-1">
+                          <label className="text-xs font-bold text-[#2c3e50] ml-1">Email: <span className="text-[#8b1a1a]">*</span></label>
+                          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required placeholder="Email..." className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-[#8b1a1a]/20 focus:border-[#8b1a1a] outline-none transition-all placeholder:text-gray-400" />
+                        </div>
+                      </div>
+                    </div>
                   )}
                 </div>
               </div>
@@ -408,119 +408,119 @@ const CheckoutPage = () => {
 
           {/* Right Column - Order Summary */}
           <div className="lg:col-span-5 relative mt-8 lg:mt-0">
-             <div className="bg-white border border-gray-100 rounded-[20px] shadow-sm p-6 sm:p-8 lg:sticky lg:top-32">
-                 <h2 className="text-[20px] font-bold text-[#1e3a5f] border-b border-gray-100 pb-5 mb-5">Thông tin đơn hàng</h2>
-                 
-                 <div className="space-y-4 mb-6 pr-2 max-h-[350px] overflow-y-auto">
-                    {checkoutItems.map(item => {
-                       const itemPrice = typeof item.price === 'string' ? parseInt(item.price.replace(/\D/g, '')) : item.price;
-                       
-                       return (
-                          <div key={item.cartId} className="flex gap-4 items-start">
-                             <div className="w-14 h-14 bg-gray-50 rounded-lg overflow-hidden flex-shrink-0 border border-gray-100">
-                                <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
-                             </div>
-                             <div className="flex-1 min-w-0 flex flex-col justify-center">
-                                <h4 className="text-[13px] font-bold text-[#475569] uppercase truncate">{item.name}</h4>
-                                <span className="text-[12px] font-medium text-gray-400 mt-1">X {item.quantity}</span>
-                                
-                                {item.isCustomBox && (
-                                   <div className="mt-3 border-l-[1.5px] border-gray-100 ml-1 pl-3 space-y-2.5">
-                                      <p className="text-[10px] font-bold text-[#1e3a5f] flex items-center gap-1 uppercase tracking-wider">
-                                         <Sparkles size={10} className="text-[#8b1a1a]" />
-                                         Hộp quà gồm:
-                                      </p>
-                                      {item.card && (
-                                         <div className="flex items-center gap-2">
-                                            <div className="w-5 h-5 rounded bg-[#fff5f1] flex items-center justify-center shrink-0 border border-[#ee4d2d]/5">
-                                               <Heart size={10} className="text-[#ee4d2d]" />
-                                            </div>
-                                            <p className="text-[10px] font-semibold text-[#475569] truncate">Thiệp: {item.card.name}</p>
-                                         </div>
-                                      )}
-                                      {item.items && item.items.map((sub, idx) => (
-                                         <div key={idx} className="flex items-center gap-2">
-                                            <div className="w-6 h-6 rounded bg-gray-50 overflow-hidden shrink-0 border border-gray-100">
-                                               <img src={sub.image} alt={sub.name} className="w-full h-full object-cover" />
-                                            </div>
-                                            <div className="min-w-0 flex-1">
-                                               <p className="text-[10px] font-medium text-gray-500 leading-none truncate">{sub.name}</p>
-                                               <p className="text-[9px] font-bold text-[#8b1a1a] mt-0.5">SL: x{sub.quantity || 1}</p>
-                                            </div>
-                                         </div>
-                                      ))}
-                                   </div>
-                                )}
+            <div className="bg-white border border-gray-100 rounded-[20px] shadow-sm p-6 sm:p-8 lg:sticky lg:top-32">
+              <h2 className="text-[20px] font-bold text-[#1e3a5f] border-b border-gray-100 pb-5 mb-5">Thông tin đơn hàng</h2>
 
-                                {!item.isCustomBox && item.category === 'Set quà' && item.tabs?.includes && (
-                                   <div className="mt-3 border-l-[1.5px] border-gray-100 ml-1 pl-3 space-y-2.5">
-                                      <p className="text-[10px] font-bold text-[#1e3a5f] flex items-center gap-1 uppercase tracking-wider">
-                                         <Sparkles size={10} className="text-[#8b1a1a]" />
-                                         Set quà gồm:
-                                      </p>
-                                      {item.tabs.includes.map((sub, idx) => (
-                                         <div key={idx} className="flex items-center gap-2">
-                                            <div className="w-6 h-6 rounded bg-gray-50 overflow-hidden shrink-0 border border-gray-100">
-                                               <img src={sub.image} alt={sub.name} className="w-full h-full object-cover" />
-                                            </div>
-                                            <div className="min-w-0 flex-1">
-                                               <p className="text-[10px] font-medium text-gray-500 leading-none truncate">{sub.name}</p>
-                                               <p className="text-[9px] font-bold text-[#8b1a1a] mt-0.5">SL: x{sub.quantity || 1}</p>
-                                            </div>
-                                         </div>
-                                      ))}
-                                   </div>
-                                )}
-                             </div>
-                             <div className="flex-shrink-0 text-right">
-                                <span className="font-bold text-[#1e3a5f] text-sm">{formatPrice(itemPrice * item.quantity)}</span>
-                             </div>
+              <div className="space-y-4 mb-6 pr-2 max-h-[350px] overflow-y-auto">
+                {checkoutItems.map(item => {
+                  const itemPrice = typeof item.price === 'string' ? parseInt(item.price.replace(/\D/g, '')) : item.price;
+
+                  return (
+                    <div key={item.cartId} className="flex gap-4 items-start">
+                      <div className="w-14 h-14 bg-gray-50 rounded-lg overflow-hidden flex-shrink-0 border border-gray-100">
+                        <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
+                      </div>
+                      <div className="flex-1 min-w-0 flex flex-col justify-center">
+                        <h4 className="text-[13px] font-bold text-[#475569] uppercase truncate">{item.name}</h4>
+                        <span className="text-[12px] font-medium text-gray-400 mt-1">X {item.quantity}</span>
+
+                        {item.isCustomBox && (
+                          <div className="mt-3 border-l-[1.5px] border-gray-100 ml-1 pl-3 space-y-2.5">
+                            <p className="text-[10px] font-bold text-[#1e3a5f] flex items-center gap-1 uppercase tracking-wider">
+                              <Sparkles size={10} className="text-[#8b1a1a]" />
+                              Hộp quà gồm:
+                            </p>
+                            {item.card && (
+                              <div className="flex items-center gap-2">
+                                <div className="w-5 h-5 rounded bg-[#fff5f1] flex items-center justify-center shrink-0 border border-[#ee4d2d]/5">
+                                  <Heart size={10} className="text-[#ee4d2d]" />
+                                </div>
+                                <p className="text-[10px] font-semibold text-[#475569] truncate">Thiệp: {item.card.name}</p>
+                              </div>
+                            )}
+                            {item.items && item.items.map((sub, idx) => (
+                              <div key={idx} className="flex items-center gap-2">
+                                <div className="w-6 h-6 rounded bg-gray-50 overflow-hidden shrink-0 border border-gray-100">
+                                  <img src={sub.image} alt={sub.name} className="w-full h-full object-cover" />
+                                </div>
+                                <div className="min-w-0 flex-1">
+                                  <p className="text-[10px] font-medium text-gray-500 leading-none truncate">{sub.name}</p>
+                                  <p className="text-[9px] font-bold text-[#8b1a1a] mt-0.5">SL: x{sub.quantity || 1}</p>
+                                </div>
+                              </div>
+                            ))}
                           </div>
-                       )
-                    })}
-                 </div>
+                        )}
 
-                 {/* Discount Input */}
-                 <div className="flex items-center gap-3 py-6 border-t border-gray-100">
-                    <input 
-                       type="text" 
-                       value={discountCode}
-                       onChange={(e) => setDiscountCode(e.target.value)}
-                       placeholder="Nhập mã giảm giá" 
-                       className="flex-1 border border-gray-200 rounded-full px-5 py-3 text-sm focus:outline-none focus:border-[#2c3e50] focus:ring-1 focus:ring-[#2c3e50] text-gray-700 placeholder:text-gray-400" 
-                    />
-                    <button type="button" className="bg-[#2c3e50] text-white px-6 py-3 rounded-full text-[13px] font-bold hover:bg-[#1e293b] transition-colors whitespace-nowrap shadow-md shadow-[#2c3e50]/20">Áp dụng</button>
-                 </div>
-
-                 {/* Summary Lines */}
-                 <div className="space-y-3 py-6 border-t border-gray-100">
-                    <div className="flex justify-between items-center text-[13px]">
-                       <span className="text-[#475569]">Tổng tiền sản phẩm:</span>
-                       <span className="font-medium text-[#1e3a5f]">{formatPrice(subtotal)}</span>
+                        {!item.isCustomBox && item.category === 'Set quà' && item.tabs?.includes && (
+                          <div className="mt-3 border-l-[1.5px] border-gray-100 ml-1 pl-3 space-y-2.5">
+                            <p className="text-[10px] font-bold text-[#1e3a5f] flex items-center gap-1 uppercase tracking-wider">
+                              <Sparkles size={10} className="text-[#8b1a1a]" />
+                              Set quà gồm:
+                            </p>
+                            {item.tabs.includes.map((sub, idx) => (
+                              <div key={idx} className="flex items-center gap-2">
+                                <div className="w-6 h-6 rounded bg-gray-50 overflow-hidden shrink-0 border border-gray-100">
+                                  <img src={sub.image} alt={sub.name} className="w-full h-full object-cover" />
+                                </div>
+                                <div className="min-w-0 flex-1">
+                                  <p className="text-[10px] font-medium text-gray-500 leading-none truncate">{sub.name}</p>
+                                  <p className="text-[9px] font-bold text-[#8b1a1a] mt-0.5">SL: x{sub.quantity || 1}</p>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                      <div className="flex-shrink-0 text-right">
+                        <span className="font-bold text-[#1e3a5f] text-sm">{formatPrice(itemPrice * item.quantity)}</span>
+                      </div>
                     </div>
-                    <div className="flex justify-between items-center text-[13px]">
-                       <span className="text-[#475569]">Phí giao hàng:</span>
-                       <span className="font-semibold text-green-600">Miễn phí</span>
-                    </div>
-                    <div className="flex justify-between items-center text-[13px]">
-                       <span className="text-[#475569]">Giảm giá:</span>
-                       <span className="font-medium text-[#1e3a5f]">0 đ</span>
-                    </div>
-                 </div>
+                  )
+                })}
+              </div>
 
-                 <div className="py-6 border-t border-gray-100 flex items-center justify-between">
-                    <span className="text-[16px] text-[#475569]">Tổng tiền:</span>
-                    <span className="text-[22px] font-black text-[#8b1a1a] tabular-nums">{formatPrice(finalTotal)}</span>
-                 </div>
+              {/* Discount Input */}
+              <div className="flex items-center gap-3 py-6 border-t border-gray-100">
+                <input
+                  type="text"
+                  value={discountCode}
+                  onChange={(e) => setDiscountCode(e.target.value)}
+                  placeholder="Nhập mã giảm giá"
+                  className="flex-1 border border-gray-200 rounded-full px-5 py-3 text-sm focus:outline-none focus:border-[#2c3e50] focus:ring-1 focus:ring-[#2c3e50] text-gray-700 placeholder:text-gray-400"
+                />
+                <button type="button" className="bg-[#2c3e50] text-white px-6 py-3 rounded-full text-[13px] font-bold hover:bg-[#1e293b] transition-colors whitespace-nowrap shadow-md shadow-[#2c3e50]/20">Áp dụng</button>
+              </div>
 
-                 <button 
-                  type="submit" 
-                  disabled={isSending || !isDeliveryInfoValid}
-                  className={`w-full bg-[#8b1a1a] text-white font-bold text-[15px] py-4 rounded-[14px] shadow-lg shadow-[#8b1a1a]/25 transition-all outline-none ${(isSending || !isDeliveryInfoValid) ? 'opacity-50 cursor-not-allowed' : 'hover:bg-[#701414] hover:-translate-y-0.5'}`}
-                 >
-                    {isSending ? 'Đang xử lý...' : 'Hoàn thành đơn hàng'}
-                 </button>
-             </div>
+              {/* Summary Lines */}
+              <div className="space-y-3 py-6 border-t border-gray-100">
+                <div className="flex justify-between items-center text-[13px]">
+                  <span className="text-[#475569]">Tổng tiền sản phẩm:</span>
+                  <span className="font-medium text-[#1e3a5f]">{formatPrice(subtotal)}</span>
+                </div>
+                <div className="flex justify-between items-center text-[13px]">
+                  <span className="text-[#475569]">Phí giao hàng:</span>
+                  <span className="font-semibold text-green-600">Miễn phí</span>
+                </div>
+                <div className="flex justify-between items-center text-[13px]">
+                  <span className="text-[#475569]">Giảm giá:</span>
+                  <span className="font-medium text-[#1e3a5f]">0 đ</span>
+                </div>
+              </div>
+
+              <div className="py-6 border-t border-gray-100 flex items-center justify-between">
+                <span className="text-[16px] text-[#475569]">Tổng tiền:</span>
+                <span className="text-[22px] font-black text-[#8b1a1a] tabular-nums">{formatPrice(finalTotal)}</span>
+              </div>
+
+              <button
+                type="submit"
+                disabled={isSending || !isDeliveryInfoValid}
+                className={`w-full bg-[#8b1a1a] text-white font-bold text-[15px] py-4 rounded-[14px] shadow-lg shadow-[#8b1a1a]/25 transition-all outline-none ${(isSending || !isDeliveryInfoValid) ? 'opacity-50 cursor-not-allowed' : 'hover:bg-[#701414] hover:-translate-y-0.5'}`}
+              >
+                {isSending ? 'Đang xử lý...' : 'Hoàn thành đơn hàng'}
+              </button>
+            </div>
           </div>
         </form>
       </div>

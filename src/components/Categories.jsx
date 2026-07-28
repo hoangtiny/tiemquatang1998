@@ -16,9 +16,14 @@ const Categories = () => {
           />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6 lg:gap-8">
           {categories.map((category, index) => (
-            <Link to="/bo-suu-tap" key={category.id} className="block">
+            <Link 
+              to="/bo-suu-tap" 
+              state={{ selectedOccasion: category.title }} 
+              key={category.id} 
+              className="block"
+            >
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}

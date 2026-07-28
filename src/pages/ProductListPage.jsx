@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Filter, ChevronDown, ShoppingCart, Heart, X, Check, Search } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { getProducts } from '../services/productService';
 import { useCart } from '../context/CartContext';
 import TypewriterText from '../components/TypewriterText';
@@ -9,12 +9,18 @@ import TypewriterText from '../components/TypewriterText';
 // Removed unused constants
 
 const ProductListPage = () => {
+  const location = useLocation();
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   
   // Filter states
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedOccasions, setSelectedOccasions] = useState([]);
+  const [selectedOccasions, setSelectedOccasions] = useState(() => {
+    if (location.state && location.state.selectedOccasion) {
+      return [location.state.selectedOccasion];
+    }
+    return [];
+  });
   const [selectedPriceRanges, setSelectedPriceRanges] = useState([]);
   const [hasFreePhoto, setHasFreePhoto] = useState(false);
   const [sortBy, setSortBy] = useState('default');
@@ -38,6 +44,14 @@ const ProductListPage = () => {
     };
     fetchProducts();
   }, []);
+
+  useEffect(() => {
+    if (location.state && location.state.selectedOccasion) {
+      setSelectedOccasions([location.state.selectedOccasion]);
+      // Clear location state so refreshing the page or manual filters aren't overridden on subsequent updates
+      window.history.replaceState({}, document.title);
+    }
+  }, [location.state]);
 
   useEffect(() => {
     let result = products;
@@ -126,7 +140,7 @@ const ProductListPage = () => {
       <div className="space-y-4">
         <h3 className="text-[18px] font-bold text-[#1e3a5f]">Dịp tặng quà</h3>
         <div className="space-y-3">
-          {['Sinh nhật', 'Kỷ niệm', 'Đám cưới', 'Tân gia', 'Valentine', '8/3', 'Ngày của mẹ', 'Cảm ơn'].map((occ, idx) => {
+          {['Dành cho nam', 'Dành cho nữ', 'Dành cho cặp đôi', 'Dịp sinh nhật', 'Dịp tốt nghiệp'].map((occ, idx) => {
             const isChecked = selectedOccasions.includes(occ);
             return (
               <label key={idx} className="flex items-center gap-3 cursor-pointer group">
@@ -261,7 +275,7 @@ const ProductListPage = () => {
                      className="w-full bg-white border border-[#d9afaf] text-[#6b7280] rounded-xl py-3 px-3 text-[13px] focus:outline-none focus:ring-2 focus:ring-[#800000]/10 focus:border-[#800000]/30 transition-all appearance-none pr-8 shadow-sm cursor-pointer"
                   >
                     <option value="">Tất cả (mặc định)</option>
-                    {['Sinh nhật', 'Kỷ niệm', 'Đám cưới', 'Tân gia', 'Valentine', '8/3', 'Ngày của mẹ', 'Cảm ơn'].map(occ => (
+                    {['Dành cho nam', 'Dành cho nữ', 'Dành cho cặp đôi', 'Dịp sinh nhật', 'Dịp tốt nghiệp'].map(occ => (
                       <option key={occ} value={occ}>{occ}</option>
                     ))}
                   </select>

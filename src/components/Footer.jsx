@@ -19,7 +19,7 @@ const Footer = () => {
             <h2 className="text-3xl font-bold text-[#800000] mb-2 font-serif">Tiệm 1998</h2>
             <div className="flex items-start gap-3 text-sm text-gray-600">
               <MapPin className="w-5 h-5 text-gray-400 shrink-0" />
-              <span>Ngõ 76 Đường Kim Hoàng, Xã Vân Canh, Huyện Hoài Đức, Hà Nội</span>
+              <span>Số 16D ngõ 14 Hậu Ái, xã Sơn Đồng, thành phố Hà Nội.</span>
             </div>
             <div className="flex items-center gap-3 text-sm text-gray-600">
               <Phone className="w-5 h-5 text-gray-400 shrink-0" />
@@ -27,7 +27,7 @@ const Footer = () => {
             </div>
             <div className="flex items-center gap-3 text-sm text-gray-600">
               <Mail className="w-5 h-5 text-gray-400 shrink-0" />
-              <span>cskh.tiem1998@gmail.com</span>
+              <span>tiemquatang1998@gmail.com</span>
             </div>
           </div>
 

@@ -18,13 +18,13 @@ export const rawProducts = [
     category: 'Set quà',
     freePhoto: true,
     capacity: 120,
-    tags: ['Kỷ niệm', 'Sinh nhật'],
+    tags: ['Dành cho nam', 'Dành cho nữ', 'Dành cho cặp đôi', 'Dịp sinh nhật'],
     additionalImages: [
-      '/anhdep/YÊU THƯƠNG MINI BOX/yeu-thuong-mini-box-2.png',
-      '/anhdep/YÊU THƯƠNG MINI BOX/yeu-thuong-mini-box-3.png',
-      '/anhdep/YÊU THƯƠNG MINI BOX/yeu-thuong-mini-box-4.png',
+      '/anhdep/YÊU THƯƠNG MINI BOX/yeu-thuong-mini-box-note-den-hoa-do.png',
+      '/anhdep/YÊU THƯƠNG MINI BOX/yeu-thuong-mini-box-note-mau-hoa-hong.png',
+      '/anhdep/YÊU THƯƠNG MINI BOX/yeu-thuong-mini-box-note-den-hoa-tulip.png',
+      '/anhdep/YÊU THƯƠNG MINI BOX/yeu-thuong-mini-box-note-hong-hoa-tulip.png',
       '/anhdep/YÊU THƯƠNG MINI BOX/yeu-thuong-mini-box-5.png',
-      '/anhdep/YÊU THƯƠNG MINI BOX/yeu-thuong-mini-box-6.png',
       '/anhdep/YÊU THƯƠNG MINI BOX/yeu-thuong-mini-box-7.png',
       '/anhdep/YÊU THƯƠNG MINI BOX/yeu-thuong-mini-box-8.png',
       '/anhdep/YÊU THƯƠNG MINI BOX/yeu-thuong-mini-box-9.png',
@@ -34,10 +34,10 @@ export const rawProducts = [
       {
         name: 'Màu sắc',
         values: [
-          { name: 'Note đen - Hoa đỏ' },
-          { name: 'Note màu - Hoa hồng' },
-          { name: 'Note đen - Hoa tulip' },
-          { name: 'Note màu - Hoa tulip' }
+          { name: 'Note đen - Hoa đỏ', image: '/anhdep/YÊU THƯƠNG MINI BOX/yeu-thuong-mini-box-note-den-hoa-do.png' },
+          { name: 'Note màu - Hoa hồng', image: '/anhdep/YÊU THƯƠNG MINI BOX/yeu-thuong-mini-box-note-mau-hoa-hong.png' },
+          { name: 'Note đen - Hoa tulip', image: '/anhdep/YÊU THƯƠNG MINI BOX/yeu-thuong-mini-box-note-den-hoa-tulip.png' },
+          { name: 'Note màu - Hoa tulip', image: '/anhdep/YÊU THƯƠNG MINI BOX/yeu-thuong-mini-box-note-hong-hoa-tulip.png' }
         ]
       },
       {
@@ -81,7 +81,7 @@ Dành tặng cho nửa kia, bạn bè thân thiết, hoặc tự thưởng cho c
     category: 'Set quà',
     freePhoto: true,
     capacity: 100,
-    tags: ['Kỷ niệm', 'Tốt nghiệp'],
+    tags: ['Dành cho nam', 'Dành cho nữ', 'Dịp tốt nghiệp'],
     additionalImages: [
       '/anhdep/CỬ NHÂN MINI BOX/cu-nhan-mini-box-2.png',
       '/anhdep/CỬ NHÂN MINI BOX/cu-nhan-mini-box-3.png',
@@ -144,7 +144,7 @@ Dành tặng cho những người bạn thân, người thương yêu trong ngà
     category: 'Set quà',
     freePhoto: true,
     capacity: 130,
-    tags: ['Kỷ niệm', 'Tốt nghiệp'],
+    tags: ['Dành cho nam', 'Dành cho nữ', 'Dịp tốt nghiệp'],
     additionalImages: [
       '/anhdep/GRADUATE BOX/granduate-box-2.webp',
       '/anhdep/GRADUATE BOX/granduate-box-3.webp',
@@ -204,7 +204,7 @@ Set quà ghi điểm bởi sự hữu dụng vượt trội với bộ sáu món
     category: 'Sản phẩm lẻ',
     freePhoto: true,
     capacity: 200,
-    tags: ['Kỷ niệm', 'Sinh nhật', 'Đám cưới', 'Valentine', '8/3', '20/10', '20/11'],
+    tags: ['Dành cho nam', 'Dành cho nữ', 'Dành cho cặp đôi', 'Dịp sinh nhật', 'Dịp tốt nghiệp'],
     additionalImages: [
       '/anhdep/MÓC KHÓA IN THEO YÊU CẦU/moc-khoa-in-theo-yeu-cau-2.png',
       '/anhdep/MÓC KHÓA IN THEO YÊU CẦU/moc-khoa-in-theo-yeu-cau-3.png',
@@ -245,7 +245,7 @@ Bạn có thể thỏa sức sáng tạo, in hình ảnh, lời chúc hoặc t�
     category: 'Sản phẩm lẻ',
     freePhoto: true,
     capacity: 200,
-    tags: ['Kỷ niệm', 'Sinh nhật', 'Đám cưới', 'Valentine'],
+    tags: ['Dành cho nam', 'Dành cho nữ', 'Dành cho cặp đôi', 'Dịp sinh nhật'],
     additionalImages: [
       '/anhdep/MÓC KHÓA IN VÂN TAY/moc-khoa-in-van-tay-2.jpg',
       '/anhdep/MÓC KHÓA IN VÂN TAY/moc-khoa-in-van-tay-3.png',
@@ -284,7 +284,7 @@ Mỗi sản phẩm được Tiệm trao đi là một set quà vô cùng tinh t�
     category: 'Sản phẩm lẻ',
     freePhoto: true,
     capacity: 150,
-    tags: ['Kỷ niệm', 'Sinh nhật', 'Đám cưới', 'Valentine', '8/3', '20/10', '20/11'],
+    tags: ['Dành cho nam', 'Dành cho nữ', 'Dịp sinh nhật', 'Dịp tốt nghiệp'],
     additionalImages: [
       '/anhdep/HUY CHƯƠNG IN THEO YÊU CẦU/huy-chuong-in-theo-yeu-cau-2.png',
       '/anhdep/HUY CHƯƠNG IN THEO YÊU CẦU/huy-chuong-in-theo-yeu-cau-3.png',
@@ -327,7 +327,7 @@ Sản phẩm vô cùng linh hoạt, cực kỳ phù hợp với mọi dịp: t�
     category: 'Sản phẩm lẻ',
     freePhoto: true,
     capacity: 180,
-    tags: ['Kỷ niệm', 'Sinh nhật', 'Đám cưới', 'Valentine', '8/3', '20/10', '20/11'],
+    tags: ['Dành cho nam', 'Dành cho nữ', 'Dành cho cặp đôi', 'Dịp sinh nhật'],
     additionalImages: [
       '/anhdep/CARD SPOTIFY IN THEO YÊU CẦU/card-spotify-in-theo-yeu-cau-2.png',
       '/anhdep/CARD SPOTIFY IN THEO YÊU CẦU/card-spotify-in-theo-yeu-cau-3.png',
@@ -370,7 +370,7 @@ Card Spotify in theo yêu cầu là món quà tặng độc đáo, giúp bạn t
     category: 'Sản phẩm lẻ',
     freePhoto: true,
     capacity: 300,
-    tags: ['Kỷ niệm', 'Sinh nhật', 'Đám cưới', 'Valentine', '8/3', '20/10', '20/11'],
+    tags: ['Dành cho nam', 'Dành cho nữ', 'Dành cho cặp đôi', 'Dịp sinh nhật'],
     additionalImages: [
       '/anhdep/ẢNH PHOTOBOOTH, PHOTOSTRIP IN THEO YÊU CẦU/anh-photobooth-photostrip-in-theo-yeu-cau-2.png',
       '/anhdep/ẢNH PHOTOBOOTH, PHOTOSTRIP IN THEO YÊU CẦU/anh-photobooth-photostrip-in-theo-yeu-cau-3.png',
@@ -417,7 +417,7 @@ Sản phẩm mang thiết kế vintage, vô cùng lý tưởng để bạn thỏ
     category: 'Sản phẩm lẻ',
     freePhoto: true,
     capacity: 350,
-    tags: ['Kỷ niệm', 'Sinh nhật', 'Đám cưới', 'Valentine', '8/3', '20/10', '20/11'],
+    tags: ['Dành cho nam', 'Dành cho nữ', 'Dành cho cặp đôi', 'Dịp sinh nhật'],
     additionalImages: [
       '/anhdep/ẢNH 6X9CM IN THEO YÊU CẦU/anh-6x9cm-in-theo-yeu-cau-2.png',
       '/anhdep/ẢNH 6X9CM IN THEO YÊU CẦU/anh-6x9cm-in-theo-yeu-cau-3.png',
@@ -458,7 +458,7 @@ Kích thước 6x9cm nhỏ gọn, tinh tế, rất lý tưởng để bạn th�
     category: 'Sản phẩm lẻ',
     freePhoto: true,
     capacity: 250,
-    tags: ['Kỷ niệm', 'Sinh nhật', 'Đám cưới', 'Valentine', '8/3', '20/10', '20/11'],
+    tags: ['Dành cho nam', 'Dành cho nữ', 'Dành cho cặp đôi', 'Dịp sinh nhật'],
     additionalImages: [
       'https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?q=80&w=800&auto=format&fit=crop'
     ],
@@ -502,17 +502,38 @@ export const cardMessages = [
 
 export const categories = [
   {
-    id: 'set-qua',
-    title: 'Set quà',
-    count: '3',
-    image: '/anhdep/hop-qua.webp',
+    id: 'danh-cho-nam',
+    title: 'Dành cho nam',
+    count: '10',
+    image: '/anhdep/HUY CHƯƠNG IN THEO YÊU CẦU/huy-chuong-in-theo-yeu-cau-1.png',
+    color: 'bg-blue-100',
+  },
+  {
+    id: 'danh-cho-nu',
+    title: 'Dành cho nữ',
+    count: '10',
+    image: '/anhdep/YÊU THƯƠNG MINI BOX/yeu-thuong-mini-box-1.png',
     color: 'bg-rose-100',
   },
   {
-    id: 'san-pham-le',
-    title: 'Sản phẩm lẻ',
+    id: 'danh-cho-cap-doi',
+    title: 'Dành cho cặp đôi',
     count: '7',
-    image: '/anhdep/MÓC KHÓA IN THEO YÊU CẦU/moc-khoa-in-theo-yeu-cau-1.png',
-    color: 'bg-blue-100',
+    image: '/anhdep/MÓC KHÓA IN VÂN TAY/moc-khoa-in-van-tay-1.png',
+    color: 'bg-purple-100',
+  },
+  {
+    id: 'dip-sinh-nhat',
+    title: 'Dịp sinh nhật',
+    count: '8',
+    image: '/anhdep/hop-qua.webp',
+    color: 'bg-amber-100',
+  },
+  {
+    id: 'dip-tot-nghiep',
+    title: 'Dịp tốt nghiệp',
+    count: '4',
+    image: '/anhdep/CỬ NHÂN MINI BOX/cu-nhan-mini-box-1.png',
+    color: 'bg-emerald-100',
   }
 ];
