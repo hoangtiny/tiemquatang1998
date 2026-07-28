@@ -18,6 +18,8 @@ const CheckoutPage = () => {
   const [isSuccess, setIsSuccess] = useState(false);
   const [isSending, setIsSending] = useState(false);
 
+  const [localQuantities, setLocalQuantities] = useState({});
+
   // Form States
   const [deliveryMethod, setDeliveryMethod] = useState('delivery'); // 'delivery' or 'pickup'
   const [customerName, setCustomerName] = useState('');
@@ -121,7 +123,7 @@ const CheckoutPage = () => {
       const freeCount = Math.floor(data.totalQuantity / 10);
       if (freeCount > 0) {
         totalDiscount += freeCount * data.minPrice;
-        rewardNotes.push(`Đã áp dụng ưu đãi Mua 10 Tặng ${freeCount} cho "${name}" (Tiết kiệm ${formatPrice(freeCount * data.minPrice)})`);
+        rewardNotes.push(`Đã áp dụng ưu đãi Mua ${freeCount * 10} Tặng ${freeCount} cho "${name}" (Tiết kiệm ${formatPrice(freeCount * data.minPrice)})`);
       } else {
         const remainder = data.totalQuantity % 10;
         if (remainder === 9) {
@@ -461,21 +463,44 @@ const CheckoutPage = () => {
                               type="button"
                               onClick={() => {
                                 if (item.quantity > 1) {
-                                  updateQuantity(item.cartId, item.quantity - 1);
+                                  const newQty = item.quantity - 1;
+                                  updateQuantity(item.cartId, newQty);
+                                  setLocalQuantities(prev => ({ ...prev, [item.cartId]: newQty }));
                                 }
                               }}
                               className="w-6 flex justify-center items-center text-gray-400 hover:text-dark hover:bg-gray-50 h-full transition-colors border-r border-gray-150"
                             >
                               <Minus size={10} />
                             </button>
-                            <span className="w-7 text-center text-xs font-bold text-[#1e3a5f]">
-                              {item.quantity}
-                            </span>
+                            <input 
+                              type="text" 
+                              value={localQuantities[item.cartId] !== undefined ? localQuantities[item.cartId] : item.quantity}
+                              onChange={(e) => {
+                                const val = e.target.value.replace(/[^0-9]/g, '');
+                                setLocalQuantities(prev => ({ ...prev, [item.cartId]: val }));
+                                if (val !== '') {
+                                  const num = parseInt(val, 10);
+                                  if (num > 0 && num <= 100) {
+                                    updateQuantity(item.cartId, num);
+                                  }
+                                }
+                              }}
+                              onBlur={() => {
+                                const val = localQuantities[item.cartId];
+                                if (val === '' || parseInt(val, 10) < 1) {
+                                  updateQuantity(item.cartId, 1);
+                                  setLocalQuantities(prev => ({ ...prev, [item.cartId]: 1 }));
+                                }
+                              }}
+                              className="w-8 text-center text-xs font-bold text-[#1e3a5f] focus:outline-none"
+                            />
                             <button
                               type="button"
                               onClick={() => {
-                                if (item.quantity < 50) {
-                                  updateQuantity(item.cartId, item.quantity + 1);
+                                if (item.quantity < 100) {
+                                  const newQty = item.quantity + 1;
+                                  updateQuantity(item.cartId, newQty);
+                                  setLocalQuantities(prev => ({ ...prev, [item.cartId]: newQty }));
                                 }
                               }}
                               className="w-6 flex justify-center items-center text-gray-400 hover:text-dark hover:bg-gray-50 h-full transition-colors border-l border-gray-150"
