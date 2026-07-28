@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { CheckCircle2, ChevronDown, CheckCircle, Sparkles, Heart } from 'lucide-react';
+import { CheckCircle2, ChevronDown, CheckCircle, Sparkles, Heart, MessageCircle } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { sendOrderEmail } from '../services/emailService';
 
@@ -244,8 +244,9 @@ const CheckoutPage = () => {
           Cảm ơn bạn đã tin tưởng Tiệm quà tặng 1998. Đơn hàng của bạn đang được xử lý và sẽ sớm được giao.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
-          <a href="https://zalo.me/0339267766" target="_blank" rel="noopener noreferrer" className="bg-[#0068ff] text-white px-8 py-3 rounded-full font-bold outline-none hover:bg-[#0052cc] transition-colors shadow-lg shadow-blue-500/20 text-center flex items-center justify-center">
-            Xác nhận đơn hàng qua Zalo
+          <a href="https://m.me/tiemquatang1998.official" target="_blank" rel="noopener noreferrer" className="bg-gradient-to-tr from-[#ff605c] to-[#a332fc] text-white px-8 py-3 rounded-full font-bold outline-none hover:opacity-90 transition-opacity shadow-lg shadow-purple-500/20 text-center flex items-center justify-center gap-2">
+            <MessageCircle size={18} fill="currentColor" />
+            Xác nhận đơn hàng qua Messenger
           </a>
           <button onClick={() => window.location.href = '/'} className="bg-gray-200 text-gray-700 px-8 py-3 rounded-full font-bold outline-none hover:bg-gray-300 transition-colors shadow-lg">
             Trở về Trang Chủ

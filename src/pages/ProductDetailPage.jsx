@@ -404,101 +404,11 @@ const ProductDetailPage = ({ onNavigate }) => {
                 </span>
               </div>
 
-              {/* Free Photo Upload Section */}
               {displayData?.freePhoto && (
-                <div className="flex flex-col gap-2 mt-2 mb-2">
-                  <span className="text-sm font-semibold text-[#1e3a8a]">In ảnh miễn phí:</span>
-                  
-                  {parseInt(quantity, 10) > 2 ? (
-                    <div className="flex flex-col gap-3">
-                      <p className="text-sm text-gray-600">Với đơn hàng trên 2 sản phẩm, vui lòng gửi link Google Drive chứa ảnh của bạn.</p>
-                      <input 
-                        type="url" 
-                        placeholder="Dán link Google Drive tại đây..."
-                        value={driveLink}
-                        onChange={(e) => setDriveLink(e.target.value)}
-                        className="w-full px-4 py-2.5 rounded-md border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all text-sm"
-                      />
-                      <a 
-                        href="https://zalo.me/0339267766" 
-                        target="_blank" 
-                        rel="noreferrer"
-                        className="flex items-center justify-center gap-2 px-4 py-2.5 bg-blue-500 hover:bg-blue-600 text-white rounded-md transition-colors text-sm font-medium w-fit shadow-sm"
-                      >
-                        Liên hệ Zalo Tiệm 1998
-                      </a>
-                    </div>
-                  ) : (
-                    <>
-                      <div className="flex items-center gap-3">
-                        <button
-                          onClick={() => fileInputRef.current?.click()}
-                          disabled={uploadedPhotos.length >= Math.min(quantity, 2)}
-                          className={`flex items-center justify-center gap-2 px-4 py-2 bg-gray-50 border border-gray-300 hover:border-primary text-gray-700 hover:text-primary rounded-md transition-colors text-sm font-medium ${uploadedPhotos.length >= Math.min(quantity, 2) ? 'opacity-50 cursor-not-allowed hidden' : ''}`}
-                        >
-                          <Upload size={16} />
-                          Tải ảnh lên ({uploadedPhotos.length}/{Math.min(quantity, 2)})
-                        </button>
-                        <input 
-                          type="file" 
-                          ref={fileInputRef} 
-                          className="hidden" 
-                          accept="image/*"
-                          multiple
-                          onChange={(e) => {
-                            const files = Array.from(e.target.files);
-                             setUploadedPhotos(prev => {
-                               const newPhotos = [...prev, ...files];
-                               // Chỉ giữ lại số lượng ảnh tối đa bằng số lượng sản phẩm nhưng không quá 2
-                               return newPhotos.slice(0, Math.min(quantity, 2));
-                             });
-                            // Reset input value to allow selecting the same file again
-                            if (fileInputRef.current) fileInputRef.current.value = '';
-                          }}
-                        />
-                      </div>
-                      
-                      {uploadedPhotos.length > 0 && (
-                        <div className="flex flex-wrap gap-2 mt-2">
-                          {uploadedPhotos.map((photo, index) => (
-                            <div key={index} className="flex items-center gap-2 bg-blue-50 text-blue-800 px-3 py-1.5 rounded-md border border-blue-100">
-                              <ImageIcon size={14} className="text-blue-600 flex-shrink-0" />
-                              <span className="text-xs font-medium max-w-[100px] truncate">{photo.name}</span>
-                              <button 
-                                onClick={() => {
-                                  setUploadedPhotos(prev => prev.filter((_, i) => i !== index));
-                                }}
-                                className="text-blue-400 hover:text-red-500 transition-colors ml-1 flex-shrink-0"
-                                title="Xóa ảnh"
-                              >
-                                <X size={14} />
-                              </button>
-                            </div>
-                          ))}
-                        </div>
-                      )}
-                       <p className="text-xs text-gray-500 italic">Áp dụng in miễn phí tối đa 2 ảnh cho mỗi đơn hàng (1 ảnh/sản phẩm, tối đa 2 ảnh).</p>
-                    </>
-                  )}
-                </div>
+                <p className="text-xs sm:text-sm text-gray-500 italic mt-2 mb-4">
+                  * Sau khi đặt hàng vui lòng liên hệ tiệm để gửi ảnh in theo yêu cầu với những sản phẩm in ảnh
+                </p>
               )}
-
-              {/* Requirement Warning */}
-               {displayData?.freePhoto && (
-                 parseInt(quantity, 10) <= 2 ? (
-                   uploadedPhotos.length < parseInt(quantity, 10) && (
-                     <p className="text-sm font-medium text-red-500 mb-1">
-                       Vui lòng tải lên đủ {quantity} ảnh để tiếp tục!
-                     </p>
-                   )
-                 ) : (
-                   driveLink.trim() === '' && (
-                     <p className="text-sm font-medium text-red-500 mb-1">
-                       Vui lòng cung cấp link Google Drive để tiếp tục!
-                     </p>
-                   )
-                 )
-               )}
 
               <div className="flex flex-row gap-3 w-full">
                 {/* Add to Cart Outline button */}
@@ -508,20 +418,7 @@ const ProductDetailPage = ({ onNavigate }) => {
                     addToCart(item, quantity);
                     alert("Thêm vào giỏ hàng thành công!");
                   }}
-                   disabled={displayData?.freePhoto && (
-                     parseInt(quantity, 10) <= 2 
-                       ? uploadedPhotos.length < parseInt(quantity, 10)
-                       : driveLink.trim() === ''
-                   )}
-                   className={`flex-1 sm:flex-none h-11 px-2 sm:px-6 bg-[#ffeee8] border border-[#ee4d2d] text-[#ee4d2d] font-semibold text-xs sm:text-[15px] whitespace-nowrap rounded-sm flex items-center justify-center gap-1 sm:gap-1.5 ${
-                     displayData?.freePhoto && (
-                       parseInt(quantity, 10) <= 2 
-                         ? uploadedPhotos.length < parseInt(quantity, 10)
-                         : driveLink.trim() === ''
-                     )
-                      ? 'opacity-50 cursor-not-allowed'
-                      : 'hover:bg-[#fff5f1] transition-colors'
-                  }`}
+                  className="flex-1 sm:flex-none h-11 px-2 sm:px-6 bg-[#ffeee8] border border-[#ee4d2d] text-[#ee4d2d] font-semibold text-xs sm:text-[15px] whitespace-nowrap rounded-sm flex items-center justify-center gap-1 sm:gap-1.5 hover:bg-[#fff5f1] transition-colors"
                 >
                   <ShoppingCart size={16} className="sm:w-[18px] sm:h-[18px]" />
                   <span className="hidden min-[380px]:inline">Thêm vào giỏ</span>
@@ -535,20 +432,7 @@ const ProductDetailPage = ({ onNavigate }) => {
                     addToCart(item, quantity);
                     navigate('/checkout');
                   }}
-                   disabled={displayData?.freePhoto && (
-                     parseInt(quantity, 10) <= 2 
-                       ? uploadedPhotos.length < parseInt(quantity, 10)
-                       : driveLink.trim() === ''
-                   )}
-                   className={`flex-1 sm:flex-none h-11 px-3 sm:px-10 border border-[#ee4d2d] bg-[#ee4d2d] text-white font-semibold text-[13px] sm:text-[15px] whitespace-nowrap shadow-sm rounded-sm ${
-                     displayData?.freePhoto && (
-                       parseInt(quantity, 10) <= 2 
-                         ? uploadedPhotos.length < parseInt(quantity, 10)
-                         : driveLink.trim() === ''
-                     )
-                      ? 'opacity-50 cursor-not-allowed'
-                      : 'hover:opacity-90 transition-colors'
-                  }`}
+                  className="flex-1 sm:flex-none h-11 px-3 sm:px-10 border border-[#ee4d2d] bg-[#ee4d2d] text-white font-semibold text-[13px] sm:text-[15px] whitespace-nowrap shadow-sm rounded-sm hover:opacity-90 transition-colors"
                 >
                   Mua ngay
                 </button>
