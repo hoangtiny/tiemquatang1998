@@ -612,9 +612,6 @@ const CheckoutPage = () => {
                 </div>
                 {deliveryMethod === 'delivery' && (
                   <div className="space-y-1 pl-1 text-[11px] text-gray-400 italic leading-normal pb-1">
-                    {shippingFee > 0 && (
-                      <p>* Với những đơn hàng từ 399.000đ trở lên thì mặc định sẽ được miễn phí ship.</p>
-                    )}
                     <p>* Đơn hàng hỏa tốc Tiệm sẽ báo lại phí vận chuyển sau</p>
                   </div>
                 )}
