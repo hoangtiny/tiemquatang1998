@@ -94,7 +94,47 @@ const CheckoutPage = () => {
 
   const subtotal = checkoutItems.reduce((total, item) => total + (parsePrice(item.price) * item.quantity), 0);
   const shippingFee = deliveryMethod === 'pickup' ? 0 : (subtotal >= 399000 ? 0 : 20000);
-  const discountAmount = 0; // Mock discount logic can be added later
+
+  // Group items by name to calculate "Buy 10 Get 1 Free" discount per product
+  const getBuy10Get1Discount = () => {
+    const groups = {};
+    checkoutItems.forEach(item => {
+      const name = item.name;
+      const priceVal = parsePrice(item.price);
+      if (!groups[name]) {
+        groups[name] = {
+          totalQuantity: 0,
+          minPrice: priceVal,
+        };
+      }
+      groups[name].totalQuantity += item.quantity;
+      if (priceVal < groups[name].minPrice) {
+        groups[name].minPrice = priceVal;
+      }
+    });
+
+    let totalDiscount = 0;
+    const upsellNotes = [];
+    const rewardNotes = [];
+
+    Object.entries(groups).forEach(([name, data]) => {
+      const freeCount = Math.floor(data.totalQuantity / 10);
+      if (freeCount > 0) {
+        totalDiscount += freeCount * data.minPrice;
+        rewardNotes.push(`Đã áp dụng ưu đãi Mua 10 Tặng ${freeCount} cho "${name}" (Tiết kiệm ${formatPrice(freeCount * data.minPrice)})`);
+      } else {
+        const remainder = data.totalQuantity % 10;
+        if (remainder === 9) {
+          upsellNotes.push(`Mua thêm 1 sản phẩm "${name}" nữa để nhận ngay ưu đãi Mua 10 Tặng 1!`);
+        }
+      }
+    });
+
+    return { totalDiscount, upsellNotes, rewardNotes };
+  };
+
+  const { totalDiscount: buy10Get1Discount, upsellNotes, rewardNotes } = getBuy10Get1Discount();
+  const discountAmount = buy10Get1Discount;
   const finalTotal = subtotal + shippingFee - discountAmount;
 
   // Validate info
@@ -417,13 +457,13 @@ const CheckoutPage = () => {
                         <div className="flex items-center gap-2 mt-1.5">
                           <span className="text-[11px] font-medium text-gray-400">Số lượng:</span>
                           <div className="flex items-center border border-gray-200 rounded-md bg-white h-7 overflow-hidden">
-                            <button 
-                              type="button" 
+                            <button
+                              type="button"
                               onClick={() => {
                                 if (item.quantity > 1) {
                                   updateQuantity(item.cartId, item.quantity - 1);
                                 }
-                              }} 
+                              }}
                               className="w-6 flex justify-center items-center text-gray-400 hover:text-dark hover:bg-gray-50 h-full transition-colors border-r border-gray-150"
                             >
                               <Minus size={10} />
@@ -431,13 +471,13 @@ const CheckoutPage = () => {
                             <span className="w-7 text-center text-xs font-bold text-[#1e3a5f]">
                               {item.quantity}
                             </span>
-                            <button 
-                              type="button" 
+                            <button
+                              type="button"
                               onClick={() => {
                                 if (item.quantity < 50) {
                                   updateQuantity(item.cartId, item.quantity + 1);
                                 }
-                              }} 
+                              }}
                               className="w-6 flex justify-center items-center text-gray-400 hover:text-dark hover:bg-gray-50 h-full transition-colors border-l border-gray-150"
                             >
                               <Plus size={10} />
@@ -501,6 +541,24 @@ const CheckoutPage = () => {
                 })}
               </div>
 
+              {/* Buy 10 Get 1 Free Promo Notices */}
+              {(rewardNotes.length > 0 || upsellNotes.length > 0) && (
+                <div className="py-4 border-t border-gray-100 space-y-2">
+                  {rewardNotes.map((note, idx) => (
+                    <div key={idx} className="bg-green-50 border border-green-200 text-green-700 text-xs rounded-xl p-3 flex items-start gap-2 font-semibold">
+                      <span className="text-sm shrink-0">🎉</span>
+                      <p className="leading-snug">{note}</p>
+                    </div>
+                  ))}
+                  {upsellNotes.map((note, idx) => (
+                    <div key={idx} className="bg-amber-50 border border-amber-200 text-amber-700 text-xs rounded-xl p-3 flex items-start gap-2 font-semibold">
+                      <span className="text-sm shrink-0">💡</span>
+                      <p className="leading-snug">{note}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
+
               {/* Discount Input */}
               <div className="flex items-center gap-3 py-6 border-t border-gray-100">
                 <input
@@ -532,12 +590,14 @@ const CheckoutPage = () => {
                     {shippingFee > 0 && (
                       <p>* Với những đơn hàng từ 399.000đ trở lên thì mặc định sẽ được miễn phí ship.</p>
                     )}
-                    <p>* Ship sẽ báo lại phí ship cụ thể nếu khách hàng cần hỏa tốc</p>
+                    <p>* Đơn hàng hỏa tốc Tiệm sẽ báo lại phí vận chuyển sau</p>
                   </div>
                 )}
                 <div className="flex justify-between items-center text-[13px]">
                   <span className="text-[#475569]">Giảm giá:</span>
-                  <span className="font-medium text-[#1e3a5f]">0 đ</span>
+                  <span className={`font-semibold ${discountAmount > 0 ? 'text-green-600' : 'text-[#1e3a5f]'}`}>
+                    {discountAmount > 0 ? `-${formatPrice(discountAmount)}` : '0 đ'}
+                  </span>
                 </div>
               </div>
 
