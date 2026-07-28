@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { CheckCircle2, ChevronDown, CheckCircle, Sparkles, Heart, MessageCircle } from 'lucide-react';
+import { CheckCircle2, ChevronDown, CheckCircle, Sparkles, Heart, MessageCircle, Minus, Plus } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { sendOrderEmail } from '../services/emailService';
 
 const CheckoutPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { cartItems, formatPrice } = useCart();
+  const { cartItems, formatPrice, updateQuantity } = useCart();
 
   // Filter items if navigating from CartPage with selected specific items
   const selectedCartIds = location.state?.selectedItems || [];
@@ -414,7 +414,36 @@ const CheckoutPage = () => {
                       </div>
                       <div className="flex-1 min-w-0 flex flex-col justify-center">
                         <h4 className="text-[13px] font-bold text-[#475569] uppercase truncate">{item.name}</h4>
-                        <span className="text-[12px] font-medium text-gray-400 mt-1">X {item.quantity}</span>
+                        <div className="flex items-center gap-2 mt-1.5">
+                          <span className="text-[11px] font-medium text-gray-400">Số lượng:</span>
+                          <div className="flex items-center border border-gray-200 rounded-md bg-white h-7 overflow-hidden">
+                            <button 
+                              type="button" 
+                              onClick={() => {
+                                if (item.quantity > 1) {
+                                  updateQuantity(item.cartId, item.quantity - 1);
+                                }
+                              }} 
+                              className="w-6 flex justify-center items-center text-gray-400 hover:text-dark hover:bg-gray-50 h-full transition-colors border-r border-gray-150"
+                            >
+                              <Minus size={10} />
+                            </button>
+                            <span className="w-7 text-center text-xs font-bold text-[#1e3a5f]">
+                              {item.quantity}
+                            </span>
+                            <button 
+                              type="button" 
+                              onClick={() => {
+                                if (item.quantity < 50) {
+                                  updateQuantity(item.cartId, item.quantity + 1);
+                                }
+                              }} 
+                              className="w-6 flex justify-center items-center text-gray-400 hover:text-dark hover:bg-gray-50 h-full transition-colors border-l border-gray-150"
+                            >
+                              <Plus size={10} />
+                            </button>
+                          </div>
+                        </div>
 
                         {item.isCustomBox && (
                           <div className="mt-3 border-l-[1.5px] border-gray-100 ml-1 pl-3 space-y-2.5">
