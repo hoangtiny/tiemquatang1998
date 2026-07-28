@@ -95,7 +95,6 @@ const CheckoutPage = () => {
   };
 
   const subtotal = checkoutItems.reduce((total, item) => total + (parsePrice(item.price) * item.quantity), 0);
-  const shippingFee = deliveryMethod === 'pickup' ? 0 : (subtotal >= 399000 ? 0 : 20000);
 
   // Group items by name to calculate "Buy 10 Get 1 Free" discount per product
   const getBuy10Get1Discount = () => {
@@ -137,6 +136,7 @@ const CheckoutPage = () => {
 
   const { totalDiscount: buy10Get1Discount, upsellNotes, rewardNotes } = getBuy10Get1Discount();
   const discountAmount = buy10Get1Discount;
+  const shippingFee = deliveryMethod === 'pickup' ? 0 : ((subtotal - discountAmount) >= 399000 ? 0 : 20000);
   const finalTotal = subtotal + shippingFee - discountAmount;
 
   // Validate info
