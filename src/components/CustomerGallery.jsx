@@ -112,8 +112,8 @@ const CustomerGallery = () => {
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
               />
 
-              {/* Hover dark overlay */}
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/50 transition-all duration-300" />
+              {/* Dark overlay for text contrast */}
+              <div className="absolute inset-0 bg-black/45 group-hover:bg-black/55 transition-all duration-300" />
 
               {/* Logo top-left */}
               <div className="absolute top-3 left-3">
@@ -135,8 +135,8 @@ const CustomerGallery = () => {
                 {item.platform === 'tiktok' ? <TikTokIcon /> : <InstagramIcon />}
               </div>
 
-              {/* Tweet-style hover card */}
-              <div className="absolute inset-x-0 bottom-0 p-3 translate-y-full group-hover:translate-y-0 transition-transform duration-400 ease-out">
+              {/* Tweet-style card */}
+              <div className="absolute inset-x-0 bottom-0 p-3 transition-transform duration-300">
                 <div className="bg-white/95 backdrop-blur-md rounded-xl p-3 shadow-lg">
                   {/* User info row */}
                   <div className="flex items-center gap-2 mb-2">
