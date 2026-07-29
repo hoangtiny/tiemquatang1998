@@ -60,23 +60,11 @@ const FeaturedProducts = ({ products = [] }) => {
                   className={`w-full h-full object-cover transform group-hover:scale-110 transition-all duration-700 ${hoverImgSrc ? 'lg:group-hover:opacity-0' : ''}`}
                 />
                 {hoverImgSrc && (
-                  <img 
+                   <img 
                     src={hoverImgSrc} 
                     alt={`${title} alternate`}
                     className="absolute inset-0 w-full h-full object-cover transform scale-100 group-hover:scale-110 opacity-0 lg:group-hover:opacity-100 transition-all duration-700"
                   />
-                )}
-                
-                {/* Badges */}
-                {badgeText && (
-                  <div className="absolute top-3 right-3">
-                    <span className={`px-2.5 py-1 text-xs font-bold text-white rounded-md shadow-sm ${
-                      badgeText === 'Mới' ? 'bg-primary' : 
-                      badgeText === 'Bán chạy' ? 'bg-orange-500' : 'bg-red-500'
-                    }`}>
-                      {badgeText}
-                    </span>
-                  </div>
                 )}
 
                 {/* Quick Actions (Hover) */}

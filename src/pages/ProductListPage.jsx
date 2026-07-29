@@ -375,11 +375,6 @@ const ProductListPage = () => {
                             className="absolute inset-0 w-full h-full object-cover transform scale-100 group-hover:scale-110 opacity-0 lg:group-hover:opacity-100 transition-all duration-700"
                           />
                         )}
-                        {product.badge && (
-                          <span className="absolute top-4 left-4 bg-primary text-white text-[10px] md:text-xs font-black uppercase tracking-widest px-3 py-1.5 rounded-full shadow-lg">
-                            {product.badge}
-                          </span>
-                        )}
                       </Link>
                       
                       <div className="p-4 md:p-6 flex flex-col flex-grow">

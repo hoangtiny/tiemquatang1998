@@ -247,9 +247,6 @@ const ProductDetailPage = ({ onNavigate }) => {
                   className="w-full h-full object-cover transform lg:group-hover:scale-110 transition-transform duration-500 cursor-zoom-in"
                 />
               </AnimatePresence>
-              <div className="absolute top-4 right-4 bg-primary text-white font-bold px-3 py-1 rounded-full text-sm">
-                Bán chạy
-              </div>
             </div>
             
             {/* Thumbnails Gallery */}
